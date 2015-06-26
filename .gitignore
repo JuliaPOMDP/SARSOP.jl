@@ -1,0 +1,4 @@
+*.dot
+*.policy
+*.pomdp
+*.pomdpx
