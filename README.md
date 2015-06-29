@@ -1,7 +1,5 @@
 # SARSOP
 
-[![Build Status](https://travis-ci.org/sisl/SARSOP.jl.svg?branch=master)](https://travis-ci.org/sisl/SARSOP.jl)
-
 This Julia package wraps the [SARSOP](http://bigbird.comp.nus.edu.sg/pmwiki/farm/appl/) software for offline POMDP planning.
 
 At the moment, only linux is supported.
