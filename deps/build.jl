@@ -1,3 +1,11 @@
+os = readall(`uname -s`)
+os = os[1:3]
+if os == "Dar"
+    error("Mac OS is not supported by the original SARSOP software.")
+elseif os == "CYG" || lowercase(os) == "min"
+    error("SARSOP.jl does not support Windows at this time.")
+end
+
 if ispath("appl-0.96")
     rm("appl-0.96", recursive=true)
 end
