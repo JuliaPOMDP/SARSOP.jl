@@ -2,7 +2,7 @@
 
 This Julia package wraps the [SARSOP](http://bigbird.comp.nus.edu.sg/pmwiki/farm/appl/) software for offline POMDP planning.
 
-At the moment, only linux is supported.
+At the moment, only linux and OSX are supported.
 
 ## Installation
 ```julia
