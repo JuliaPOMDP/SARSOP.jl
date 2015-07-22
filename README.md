@@ -14,13 +14,15 @@ Pkg.clone("https://github.com/sisl/SARSOP.jl")
 using SARSOP
 using POMDPToolbox # for working with beliefs
 
+# If the policy file already exists, it will be loaded by default
 policy = PolicyFile("mypolicy.policy")
 pomdp = POMDPFile(Pkg.dir("SARSOP", "deps", "appl-0.96", "examples", "POMDPX", "Tiger.pomdpx"))
 solver = SARSOPSolver(fast=true)
-solve!(policy, solver, pomdp)
+solve!(policy, solver, pomdp) # no need to use solve if "mypolicy.policy" already exists
 
 # Policy can be used to map belief to actions
-b = UniformBelief(pomdp) 
+ns = n_states(pomdp)
+b = DiscreteBelief(ns) # initializes uniform belief type
 a = action(policy, b)
 
 simulator = SARSOPSimulator(5, 5)

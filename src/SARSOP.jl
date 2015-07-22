@@ -1,5 +1,7 @@
 module SARSOP
 
+using POMDPs
+using POMDPToolbox
 import POMDPs: POMDP, Solver, Policy
 
 export 
@@ -174,7 +176,18 @@ end
 
 type PolicyFile <: Policy
     filename::String
+    alphas::Alphas
+    obs_type::Symbol
     PolicyFile(filename="out.policy") = new(filename)
+    function PolicyFile(filename="out.policy", obs=:pomdp)
+        self = new()
+        if isfile(filename)
+            obs == :pomdp ? self.alphas = POMDPAlphas(filename) : self.alphas = MOMDPAlphas(filename)
+        end
+        self.filename = filename
+        self.obs_type = obs
+        return self
+    end
 end
 
 function _get_options_list(options::Dict{String,Any})
@@ -196,6 +209,7 @@ function solve!(policy::PolicyFile, solver::SARSOPSolver, pomdp::POMDPFile)
         options_list = _get_options_list(solver.options)
         run(`$EXEC_POMDP_SOL $(pomdp.filename) --output $(policy.filename) $options_list`)
     end
+    policy.obs_type == :pomdp ? policy.alphas = POMDPAlphas(pomdp.filename) : policy.alphas = MOMDPAlphas(pomdp.filename)
 end
 
 function simulate(simulator::SARSOPSimulator, policy::PolicyFile, pomdp::POMDPFile)
@@ -216,6 +230,15 @@ end
 function to_pomdpx(pomdp::POMDPFile)
     @assert(splitext(pomdp.filename)[2] == ".pomdp")
     run(`$EXEC_POMDP_CONVERT $(pomdp.filename)`)
+end
+
+
+function action(policy::PolicyFile, b::Belief)
+    return action(policy.alphas, b.b)
+end
+function action(policy::PolicyFile, b::Belief, x::Int64)
+    # for MOMDP
+    return action(policy.alphas, b.b)
 end
 
 end # module
