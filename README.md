@@ -12,11 +12,16 @@ Pkg.clone("https://github.com/sisl/SARSOP.jl")
 ## Usage
 ```julia
 using SARSOP
+using POMDPToolbox # for working with beliefs
 
 policy = PolicyFile("mypolicy.policy")
 pomdp = POMDPFile(Pkg.dir("SARSOP", "deps", "appl-0.96", "examples", "POMDPX", "Tiger.pomdpx"))
 solver = SARSOPSolver(fast=true)
 solve!(policy, solver, pomdp)
+
+# Policy can be used to map belief to actions
+b = UniformBelief(pomdp) 
+a = action(policy, b)
 
 simulator = SARSOPSimulator(5, 5)
 simulate(simulator, policy, pomdp)
