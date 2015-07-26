@@ -2,7 +2,8 @@ module SARSOP
 
 using POMDPs
 using POMDPToolbox
-import POMDPs: POMDP, Solver, Policy
+using POMDPXFile
+import POMDPs: POMDP, Solver, Policy, action, value
 
 export 
     SARSOPSolver,
@@ -16,7 +17,9 @@ export
     simulate,
     evaluate,
     polgraph,
-    to_pomdpx
+    to_pomdpx,
+    action,
+    value
 
 const EXEC_POMDP_SOL = Pkg.dir("SARSOP", "deps", "appl-0.96", "src", "pomdpsol")
 const EXEC_POMDP_SIM = Pkg.dir("SARSOP", "deps", "appl-0.96", "src", "pomdpsim")
@@ -178,7 +181,7 @@ type PolicyFile <: Policy
     filename::String
     alphas::Alphas
     obs_type::Symbol
-    PolicyFile(filename="out.policy") = new(filename)
+    PolicyFile(filename::String, alphas::Alphas, obs::Symbol) = new(filename, alphas, obs)
     function PolicyFile(filename="out.policy", obs=:pomdp)
         self = new()
         if isfile(filename)
@@ -234,11 +237,11 @@ end
 
 
 function action(policy::PolicyFile, b::Belief)
-    return action(policy.alphas, b.b)
+    return action(policy.alphas, b)
 end
 function action(policy::PolicyFile, b::Belief, x::Int64)
     # for MOMDP
-    return action(policy.alphas, b.b)
+    return action(policy.alphas, b, x)
 end
 
 end # module
