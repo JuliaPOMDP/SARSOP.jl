@@ -3,7 +3,7 @@ module SARSOP
 using POMDPs
 using POMDPToolbox
 using POMDPXFile
-import POMDPs: POMDP, Solver, Policy, action, value
+import POMDPs: POMDP, Solver, Policy, action, value, solve!, simulate
 
 export 
     SARSOPSolver,
