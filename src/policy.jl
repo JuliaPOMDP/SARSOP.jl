@@ -8,7 +8,11 @@ type POMDPPolicy <: SARSOPPolicy
     function POMDPPolicy(filename="out.policy")
         self = new()
         self.filename = filename
-        self.alphas = POMDPAlphas(filename)
+        if isfile(filename)
+            self.alphas = POMDPAlphas(filename)
+        else
+            self.alphas = POMDPAlphas()
+        end
         return self
     end
 end
@@ -21,7 +25,11 @@ type MOMDPPolicy <: SARSOPPolicy
     function MOMDPPolicy(filename="out.policy")
         self = new()
         self.filename = filename
-        self.alphas = MOMDPAlphas(filename)
+        if isfile(filename)
+            self.alphas = MOMDPAlphas(filename)
+        else
+            self.alphas = MOMDPAlphas()
+        end
         return self
     end
 end

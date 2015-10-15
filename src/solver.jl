@@ -41,13 +41,25 @@ type SARSOPSolver <: Solver
     end
 end
 
-# generates a policy file
-function solve(solver::SARSOPSolver, pomdp::SARSOPFile, policy::SARSOPPolicy)
+# generates a pomdp policy file
+function solve(solver::SARSOPSolver, pomdp::SARSOPFile, policy::POMDPPolicy)
     if isempty(solver.options)
         run(`$EXEC_POMDP_SOL $(pomdp.filename) --output $(policy.filename)`)
     else
         options_list = _get_options_list(solver.options)
         run(`$EXEC_POMDP_SOL $(pomdp.filename) --output $(policy.filename) $options_list`)
     end
-    policy.obs_type == :pomdp ? policy.alphas = POMDPAlphas(pomdp.filename) : policy.alphas = MOMDPAlphas(pomdp.filename)
+    policy.alphas = POMDPAlphas(policy.filename)
 end
+
+# generates a momdp policy file
+function solve(solver::SARSOPSolver, pomdp::SARSOPFile, policy::MOMDPPolicy)
+    if isempty(solver.options)
+        run(`$EXEC_POMDP_SOL $(pomdp.filename) --output $(policy.filename)`)
+    else
+        options_list = _get_options_list(solver.options)
+        run(`$EXEC_POMDP_SOL $(pomdp.filename) --output $(policy.filename) $options_list`)
+    end
+    policy.alphas = MOMDPAlphas(policy.filename)
+end
+
