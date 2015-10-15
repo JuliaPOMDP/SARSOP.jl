@@ -29,16 +29,18 @@ ns = n_states(pomdp) # implemented by user
 b = initial_belief(pomdp) # implemented by user
 a = action(policy, b) 
 
+# simulate the SARSOP policy
 simulator = SARSOPSimulator(5, 5)
-simulate(simulator, policy, pomdp)
+simulate(simulator, policy, pomdpfile)
 
+# evaluate the SARSOP policy
 evaluator = SARSOPEvaluator(5, 5)
-evaluate(evaluator, policy, pomdp)
+evaluate(evaluator, policy, pomdpfile)
 
+# generates a policy graph
 graphgen = PolicyGraphGenerator("Tiger.dot")
 polgraph(graphgen, policy, pomdp)
 
-to_pomdpx(POMDPFile(Pkg.dir("SARSOP", "deps", "appl-0.96", "examples", "POMDP", "Tiger.pomdp")))
 ```
 
 ### MODMPs
