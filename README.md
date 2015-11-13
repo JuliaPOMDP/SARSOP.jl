@@ -15,7 +15,7 @@ Pkg.clone("https://github.com/sisl/SARSOP.jl")
 using SARSOP
 
 # If the policy file already exists, it will be loaded by default
-policy = PolicyFile("mypolicy.policy")
+policy = POMDPPolicy("mypolicy.policy")
 
 # If the .pomdpx file exists call: pomdpfile = POMDPFile("\path\to\file") 
 pomdp = MyPOMDP() # initialize your pomdp model
@@ -50,7 +50,7 @@ To use with mixed observability Markov decision processes (MOMDPs) make sure to 
 using SARSOP
 
 # If the policy file already exists, it will be loaded by default
-policy = PolicyFile("mypolicy.policy")
+policy = MOMDPPolicy("mypolicy.policy")
 
 momdp = MyMOMDP() # initialize your pomdp model
 pomdpfile = MOMDPFile(momdp, "\path\to\write\to") # second arg is the file to which .pomdpx will be writeten
