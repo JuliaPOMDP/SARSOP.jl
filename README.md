@@ -34,7 +34,7 @@ Pkg.clone("https://github.com/sisl/POMDPXFile.jl")
 ```julia
 using SARSOP
 # run Pkg.clone("https://github.com/sisl/POMDPModels.jl.git") and Pkg.build("POMDPModels") to get this module
-using POMDPModles # this contains the TigerPOMDP
+using POMDPModels # this contains the TigerPOMDP
 
 # If the policy file already exists, it will be loaded by default
 policy = POMDPPolicy("tiger.policy")
