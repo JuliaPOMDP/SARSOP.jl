@@ -27,13 +27,15 @@ Pkg.clone("https://github.com/sisl/POMDPXFile.jl")
 ### POMDPs
 ```julia
 using SARSOP
+# run Pkg.clone("https://github.com/sisl/POMDPModels.jl.git") to get this module
+using POMDPModles # this contains the TigerPOMDP
 
 # If the policy file already exists, it will be loaded by default
-policy = POMDPPolicy("mypolicy.policy")
+policy = POMDPPolicy("tiger.policy")
 
 # If the .pomdpx file exists call: pomdpfile = POMDPFile("\path\to\file") 
-pomdp = MyPOMDP() # initialize your pomdp model
-pomdpfile = POMDPFile(pomdp, "\path\to\write\to") # second arg is the file to which .pomdpx will be writeten
+pomdp = TigerPOMDP() # this comes from POMDPModels, you will want this to be your concrete POMDP type
+pomdpfile = POMDPFile(pomdp, "tiger.pomdpx") # second arg is the file to which .pomdpx will be writeten
 
 solver = SARSOPSolver()
 solve(solver, pomdpfile, policy) # no need to use solve if "mypolicy.policy" already exists
