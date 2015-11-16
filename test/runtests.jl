@@ -1,10 +1,10 @@
 using SARSOP
 using Base.Test
 
-policy = PolicyFile("mypolicy.policy")
-pomdp = POMDPFile(Pkg.dir("SARSOP", "deps", "appl-0.96", "examples", "POMDPX", "Tiger.pomdpx"))
-solver = SARSOPSolver(fast=true)
-solve!(policy, solver, pomdp)
+policy = POMDPPolicy("mypolicy.policy")
+pomdpfile = POMDPFile(Pkg.dir("SARSOP", "deps", "appl-0.96", "examples", "POMDPX", "Tiger.pomdpx"))
+solver = SARSOPSolver()
+solve(solver, pomdpfile, policy)
 
 simulator = SARSOPSimulator(5, 5)
 simulate(simulator, policy, pomdp)
