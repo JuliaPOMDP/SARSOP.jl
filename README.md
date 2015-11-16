@@ -2,7 +2,7 @@
 
 This Julia package wraps the [SARSOP](http://bigbird.comp.nus.edu.sg/pmwiki/farm/appl/) software for offline POMDP planning. 
 It works with the [POMDPS.jl](https://github.com/sisl/POMDPs.jl) interface.
-An module for writing POMDPX files is provided through the [POMDPXFile.jl](https://github.com/sisl/POMDPXFile.jl) package, and is a dependancy for this module. 
+A module for writing POMDPX files is provided through the [POMDPXFile.jl](https://github.com/sisl/POMDPXFile.jl) package, and is a dependancy for SARSOP.jl. 
 
 At the moment, only linux and OSX are supported.
 
