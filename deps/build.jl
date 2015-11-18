@@ -35,6 +35,7 @@ function replaceLine(filename::String, linenum::Int, textofline::String)
     end
     close(outfile)
     close(infile)
+    rm(filename)
     mv("temp.txt", filename)
 end
 
