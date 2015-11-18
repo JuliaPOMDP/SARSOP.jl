@@ -4,7 +4,9 @@ abstract SARSOPPolicy <: Policy
 type POMDPPolicy <: SARSOPPolicy
     filename::String
     alphas::Alphas
-    POMDPPolicy(filename::String, alphas::Alphas) = new(filename, alphas)
+    pomdp::POMDP
+    action_map::Vector{Action}
+    POMDPPolicy(filename::String, alphas::Alphas, pomdp::POMDP) = new(filename, alphas, pomdp, Action[])
     function POMDPPolicy(filename="out.policy")
         self = new()
         self.filename = filename
@@ -21,7 +23,9 @@ end
 type MOMDPPolicy <: SARSOPPolicy
     filename::String
     alphas::Alphas
-    MOMDPPolicy(filename::String, alphas::Alphas) = new(filename, alphas)
+    pomdp::POMDP
+    action_map::Vector{Action}
+    MOMDPPolicy(filename::String, alphas::Alphas, pomdp) = new(filename, alphas, pomdp, Action[])
     function MOMDPPolicy(filename="out.policy")
         self = new()
         self.filename = filename

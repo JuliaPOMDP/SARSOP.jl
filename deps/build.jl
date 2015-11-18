@@ -1,6 +1,8 @@
 @windows_only error("SARSOP.jl does not support Windows at this time.")
 
-Pkg.clone("https://github.com/sisl/POMDPXFile.jl")
+if !isdir(Pkg.dir("POMDPXFile"))
+    Pkg.clone("https://github.com/sisl/POMDPXFile.jl")
+end
 
 if ispath("appl-0.96")
     rm("appl-0.96", recursive=true)
