@@ -41,3 +41,6 @@ function action(policy::MOMDPPolicy, b::Belief, x::Int64)
     # for MOMDP
     return action(policy.alphas, b, x)
 end
+
+# getter for alpha-vectors
+alphas(policy::SARSOPPolicy) = policy.alphas.alpha_vectors

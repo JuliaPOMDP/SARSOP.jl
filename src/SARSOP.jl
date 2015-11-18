@@ -22,7 +22,8 @@ export
     polgraph,
     to_pomdpx,
     action,
-    value
+    value,
+    alphas
 
 include("constants.jl")
 include("file.jl")
