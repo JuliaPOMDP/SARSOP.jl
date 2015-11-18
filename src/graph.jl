@@ -35,7 +35,7 @@ type PolicyGraphGenerator
     end
 end
 
-function polgraph(graphgen::PolicyGraphGenerator, policy::PolicyFile, pomdp::POMDPFile)
+function polgraph(graphgen::PolicyGraphGenerator, pomdp::SARSOPFile, policy::SARSOPPolicy)
     options_list = _get_options_list(graphgen.options)
     run(`$EXEC_POLICY_GRAPH_GENERATOR $(pomdp.filename) --policy-file $(policy.filename) $options_list`)
 end

@@ -9,8 +9,10 @@ export
     SARSOPSimulator,
     SARSOPEvaluator,
     PolicyGraphGenerator,
+    SARSOPFile,
     POMDPFile,
     MOMDPFile,
+    SARSOPPolicy,
     POMDPPolicy,
     MOMDPPolicy,
 
@@ -27,6 +29,7 @@ include("file.jl")
 include("policy.jl")
 include("solver.jl")
 include("simulator.jl")
+include("graph.jl")
 include("commons.jl")
 
 

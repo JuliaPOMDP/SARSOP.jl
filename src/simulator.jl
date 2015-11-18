@@ -63,12 +63,12 @@ type SARSOPEvaluator
     end
 end
 
-function simulate(simulator::SARSOPSimulator, pomdp::POMDPFile, policy::SARSOPPolicy)
+function simulate(simulator::SARSOPSimulator, pomdp::SARSOPFile, policy::SARSOPPolicy)
     options_list = _get_options_list(simulator.options)
     run(`$EXEC_POMDP_SIM $(pomdp.filename) --policy-file $(policy.filename) $options_list`)
 end
 
-function evaluate(evaluator::SARSOPEvaluator, pomdp::POMDPFile, policy::SARSOPPolicy)
+function evaluate(evaluator::SARSOPEvaluator, pomdp::SARSOPFile, policy::SARSOPPolicy)
     options_list = _get_options_list(evaluator.options)
     run(`$EXEC_POMDP_EVAL $(pomdp.filename) --policy-file $(policy.filename) $options_list`)
 end
