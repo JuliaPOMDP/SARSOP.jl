@@ -7,10 +7,13 @@ if ispath("appl-0.96")
 end
 
 @windows_only begin
-    run(`mkdir appl-0.96`)
-    cd("appl-0.96")
-    run(`mkdir src`)
-    cd("src")
+    if ispath("appl-0.96win")
+        rm("appl-0.96win", recursive=true)
+    end
+    download("http://bigbird.comp.nus.edu.sg/pmwiki/farm/appl/uploads/Main/appl-0.96win.zip", "appl-0.96win.zip")
+    run(`unzip appl-0.96win.zip`)
+    mv("appl-0.96win", "appl-0.96")
+    cd("appl-0.96/src")
     download("http://web.stanford.edu/group/sisl/resources/appl-0.96-win-x64.zip", "appl-0.96-win-x64.zip")
     run(`unzip appl-0.96-win-x64.zip`)
 end
