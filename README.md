@@ -31,6 +31,25 @@ Pkg.clone("https://github.com/sisl/POMDPXFile.jl")
 
 ## Usage
 ### POMDPs
+The following functions must be defined in order to use the SARSOP solver:
+
+```julia
+discount(pomdp::POMDP) # returns the discount factor
+n_states(pomdp::POMDP) # returns the size of the state space
+n_actions(pomdp::POMDP) # returns the size of the action space
+n_observations(pomdp::POMDP) # returns the size of the observation space
+states(pomdp::POMDP) # returns the problem state space
+domain(state_space::AbstractSpace) # returns an iterator over the state space
+actions(pomdp::POMDP) # returns the problem action space
+domain(action_space::AbstractSpace) # returns an iterator over the action space
+observations(pomdp::POMDP) # returns the problem observation space
+domain(observation_space::AbstractSpace) # returns an iterator over the observation space
+transition(pomdp::POMDP, s::State, a::Action, d::AbstractDistribution) # distribution of states from the (s,a) pair
+pdf(d::AbstractDistribution, s::State) # the probability of state s in distribution d
+observation(pomdp::POMDP, s::State, a::Action, d::AbstractDistribution) # distribution over observation from the (s,a) pair
+create_transition_distribution(pomdp::POMDP) # returns an initial instance of the transition distribution
+create_observation_distribution(pomdp::POMDP) # returns an initial instance of the observation distribution
+```
 ```julia
 using SARSOP
 # run Pkg.clone("https://github.com/sisl/POMDPModels.jl.git") and Pkg.build("POMDPModels") to get this module
