@@ -2,7 +2,7 @@ abstract SARSOPFile <: POMDP
 
 
 type POMDPFile <: SARSOPFile
-    filename::String
+    filename::AbstractString
 
     function POMDPFile(filename)
         @assert isfile(filename) "Pomdpx file $(filename) does not exist"
@@ -20,7 +20,7 @@ end
 
 
 type MOMDPFile <: SARSOPFile
-    filename::String
+    filename::AbstractString
 
     function POMDPFile(filename)
         @assert isfile(filename) "Pomdpx file $(filename) does not exist"
