@@ -1,6 +1,6 @@
 # returns the solver options
-function _get_options_list(options::Dict{String,Any})
-    options_list = Array(String, 2*length(options))
+function _get_options_list(options::Dict{AbstractString,Any})
+    options_list = Array(AbstractString, 2*length(options))
     count = 0
     for (k,v) in options
         options_list[count+=1] = "--" * k

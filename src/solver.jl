@@ -1,6 +1,6 @@
 type SARSOPSolver <: Solver
 
-    options::Dict{String,Any}
+    options::Dict{AbstractString,Any}
 
     function SARSOPSolver(;
         fast::Bool=false, # Use fast (but very picky) alternate parser for .pomdp files
@@ -14,7 +14,7 @@ type SARSOPSolver <: Solver
         policy_interval::Float64=NaN # the time interval between two consecutive write-out of policy files; defaults to only exporting at end
         )
 
-        options = Dict{String,Any}()
+        options = Dict{AbstractString,Any}()
         if fast
             options["fast"] = ""
         end

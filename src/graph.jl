@@ -1,22 +1,22 @@
 type PolicyGraphGenerator
 
-    options::Dict{String,Any}
+    options::Dict{AbstractString,Any}
 
     function PolicyGraphGenerator(
-        filename::String; # output name for the DOT file to be generated
+        filename::AbstractString; # output name for the DOT file to be generated
         fast::Bool=false, # use fast (but very picky) alternate parser for .pomdp files
-        graph_max_depth::Union(Int,Nothing)=nothing, # maximum horizon of the generated policy graph.
+        graph_max_depth::Union{Int,Void}=nothing, # maximum horizon of the generated policy graph.
                                                      # There is no limit by default.
-        graph_max_branch::Union(Int,Nothing)=nothing, # maximum number of branches 
+        graph_max_branch::Union{Int,Void}=nothing, # maximum number of branches 
                                                       # of the generated policy graph.
                                                       # Shown will be top in probability.
                                                       # There is no limit by default.
-        graph_min_prob::Union(Float64,Nothing)=nothing, # minimum probability threshold for a branch
+        graph_min_prob::Union{Float64,Void}=nothing, # minimum probability threshold for a branch
                                                     # to be shown in the policy graph
                                                     # defaults to zero
         )
 
-        options = Dict{String,Any}()
+        options = Dict{AbstractString,Any}()
         options["policy-graph"] = filename
         if fast
             options["fast"] = ""

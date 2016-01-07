@@ -1,15 +1,15 @@
 type SARSOPSimulator <: Simulator
-    options::Dict{String,Any}
+    options::Dict{AbstractString,Any}
 
     function SARSOPSimulator(
         sim_len::Int, # number of steps to use in simulation
         sim_num::Int; # number of simulations to run
         fast::Bool=false, # use fast (but very picky) alternate parser for .pomdp files
-        srand::Union(Int64,Nothing)=nothing, # set the rand seed for the simulation
-        output_file::String=""
+        srand::Union{Int64,Void}=nothing, # set the rand seed for the simulation
+        output_file::AbstractString=""
         )
 
-        options = Dict{String,Any}()
+        options = Dict{AbstractString,Any}()
 
         options["simLen"] = sim_len
         options["simNum"] = sim_num
@@ -28,21 +28,21 @@ type SARSOPSimulator <: Simulator
 end
 type SARSOPEvaluator
 
-    options::Dict{String,Any}
+    options::Dict{AbstractString,Any}
 
     function SARSOPEvaluator(
         sim_len::Int, # number of steps to use in simulation
         sim_num::Int; # number of simulations to run
         fast::Bool=false, # use fast (but very picky) alternate parser for .pomdp files
-        srand::Union(Int64,Nothing)=nothing, # set the rand seed for the simulation
+        srand::Union{Int64,Void}=nothing, # set the rand seed for the simulation
         memory::Float64=NaN, # [MD] No memory limit by default. 
                              # If memory usage exceeds the specified value,
                              # the evaluator will switch back to a more
                              # memory conservative (and slow) method.        
-        output_file::String=""
+        output_file::AbstractString=""
         )
 
-        options = Dict{String,Any}()
+        options = Dict{AbstractString,Any}()
 
         options["simLen"] = sim_len
         options["simNum"] = sim_num
