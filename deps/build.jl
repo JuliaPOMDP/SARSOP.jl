@@ -28,7 +28,7 @@ end
     end
     cd("appl-0.96/src")
 
-    function replaceLine(filename::String, linenum::Int, textofline::String)
+    function replaceLine(filename::AbstractString, linenum::Int, textofline::AbstractString)
         outfile = open("temp.txt", "w")
         infile = open(filename)
         i = 1
