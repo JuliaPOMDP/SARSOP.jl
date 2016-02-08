@@ -41,9 +41,9 @@ n_states(pomdp::POMDP) # returns the size of the state space
 n_actions(pomdp::POMDP) # returns the size of the action space
 n_observations(pomdp::POMDP) # returns the size of the observation space
 states(pomdp::POMDP) # returns the problem state space
-domain(state_space::AbstractSpace) # returns an iterator over the state space
+iterator(state_space::AbstractSpace) # returns an iterator over the state space
 actions(pomdp::POMDP) # returns the problem action space
-domain(action_space::AbstractSpace) # returns an iterator over the action space
+iterator(action_space::AbstractSpace) # returns an iterator over the action space
 observations(pomdp::POMDP) # returns the problem observation space
 domain(observation_space::AbstractSpace) # returns an iterator over the observation space
 transition(pomdp::POMDP, s::State, a::Action, d::AbstractDistribution) # distribution of states from the (s,a) pair

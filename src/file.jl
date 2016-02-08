@@ -10,10 +10,8 @@ type POMDPFile <: SARSOPFile
     end
     function POMDPFile(pomdp::POMDP, filename="model.pomdpx")
         pomdpx = POMDPX(filename)
-        if !isfile(filename)
-            println("Generating a pomdpx file: $(filename)")
-            write(pomdp, pomdpx)
-        end
+        println("Generating a pomdpx file: $(filename)")
+        write(pomdp, pomdpx)
         return new(filename)
     end
 end
