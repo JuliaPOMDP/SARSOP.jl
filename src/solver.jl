@@ -1,3 +1,16 @@
+"""
+    SARSOPSolver
+
+Base solver type for SARSOP. Contains an options dictionary with the following entries:
+
+* 'fast': use fast (but very picky) alternate parser for .pomdp files
+* 'randomization': turn on randomization for the sampling algorithm
+* 'precision': run ends when target precision is reached
+* 'timeout':  [sec] If running time exceeds the specified value, pomdpsol writes out a policy and terminates
+* 'memory': [MB] If memory usage exceeds the specified value, pomdpsol writes out a policy and terminates
+* 'trial-improvement-factor': temrinates when the gap between bounds reaches this value
+* 'policy-interval':  the time interval between two consecutive write-out of policy files
+"""
 type SARSOPSolver <: Solver
 
     options::Dict{AbstractString,Any}
@@ -41,7 +54,12 @@ type SARSOPSolver <: Solver
     end
 end
 
-# generates a pomdp policy file
+"""
+    solve(solver, pomdp, policy)
+
+Runs pomdpsol using the options in 'solver' on 'pomdp', 
+and writes out a .policy xml file specified by 'policy'.
+"""
 function solve(solver::SARSOPSolver, pomdp::SARSOPFile, policy::POMDPPolicy)
     if isempty(solver.options)
         run(`$EXEC_POMDP_SOL $(pomdp.filename) --output $(policy.filename)`)
