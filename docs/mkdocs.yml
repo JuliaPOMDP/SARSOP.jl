@@ -26,7 +26,7 @@ extra_javascript:
 docs_dir: 'build'
 
 pages:
-- Overview: index.md
+- Home: index.md
 - Manual: 
     - Guide: man/guide.md
     - Solver Details: man/details.md
