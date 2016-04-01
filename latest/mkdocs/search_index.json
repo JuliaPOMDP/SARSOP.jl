@@ -1,0 +1,84 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "SARSOP\n\n\nA Julia wrapper for the SARSOP partially observabe Markov decision process solver.\n\n\n\n\nPackage Features\n\n\n\n\nEasy to use interface for the APPL \nSARSOP package\n\n\nAutomtically generated .pomdpx files using the \nPOMDPs.jl\n interface\n\n\nAutomatic policy file parsing and policy generation\n\n\n\n\n\n\nManual Outline\n\n\n\n\nSARSOP\n\n\nPackage Features\n\n\nManual Outline\n\n\n\n\n\n\nSolver Documentation\n\n\nContents\n\n\nIndex\n\n\nSolver\n\n\nPolicy\n\n\nSolver Details\n\n\n\n\n\n\nPackage Guide\n\n\nInstallation\n\n\nUsage", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#sarsop", 
+            "text": "A Julia wrapper for the SARSOP partially observabe Markov decision process solver.", 
+            "title": "SARSOP"
+        }, 
+        {
+            "location": "/#package-features", 
+            "text": "Easy to use interface for the APPL  SARSOP package  Automtically generated .pomdpx files using the  POMDPs.jl  interface  Automatic policy file parsing and policy generation", 
+            "title": "Package Features"
+        }, 
+        {
+            "location": "/#manual-outline", 
+            "text": "SARSOP  Package Features  Manual Outline    Solver Documentation  Contents  Index  Solver  Policy  Solver Details    Package Guide  Installation  Usage", 
+            "title": "Manual Outline"
+        }, 
+        {
+            "location": "/man/guide/", 
+            "text": "Package Guide\n\n\n\n\nInstallation\n\n\nThe package can be installed by either cloning the code and running build or by using the \nadd\n function from \nPOMDPs.jl\n\n\nInstallation with POMDPs.jl:\n\n\nUsing\n \nPOMDPs\n\n\nPOMDPs\n.\nadd\n(\nSARSOP\n)\n\n\n\n\n\n\n\n\nUsage\n\n\nSARSOP.jl makes it easy to interface with the APPL SARSOP solver. Once you have a model defined according to POMDPs.jl, you can generate policies by running the following:\n\n\nusing\n \nSARSOP\n\n\nusing\n \nPOMDPModels\n \n# this contains the TigerPOMDP model\n\n\n\n# If the policy file already exists, it will be loaded by default\n\n\npolicy\n \n=\n \nPOMDPPolicy\n(\ntiger.policy\n)\n\n\n\n# If the .pomdpx file exists call: pomdpfile = POMDPFile(\n\\path\\to\\file\n) \n\n\npomdp\n \n=\n \nTigerPOMDP\n()\n \n# this comes from POMDPModels, you will want this to be your concrete POMDP type\n\n\npomdpfile\n \n=\n \nPOMDPFile\n(\npomdp\n,\n \ntiger.pomdpx\n)\n \n# second arg is the file to which .pomdpx will be writeten\n\n\n\nsolver\n \n=\n \nSARSOPSolver\n()\n\n\nsolve\n(\nsolver\n,\n \npomdpfile\n,\n \npolicy\n)\n \n# no need to use solve if \nmypolicy.policy\n already exists\n\n\n\n\n\n\nWe can simulate, evalaute and create policy graphs:\n\n\n# Policy can be used to map belief to actions\n\n\nns\n \n=\n \nn_states\n(\npomdp\n)\n \n# implemented by user\n\n\nb\n \n=\n \ninitial_belief\n(\npomdp\n)\n \n# implemented by user\n\n\na\n \n=\n \naction\n(\npolicy\n,\n \nb\n)\n \n\n\n# simulate the SARSOP policy\n\n\nsimulator\n \n=\n \nSARSOPSimulator\n(\n5\n,\n \n5\n)\n\n\nsimulate\n(\nsimulator\n,\n \npolicy\n,\n \npomdpfile\n)\n\n\n\n# evaluate the SARSOP policy\n\n\nevaluator\n \n=\n \nSARSOPEvaluator\n(\n5\n,\n \n5\n)\n\n\nevaluate\n(\nevaluator\n,\n \npolicy\n,\n \npomdpfile\n)\n\n\n\n# generates a policy graph\n\n\ngraphgen\n \n=\n \nPolicyGraphGenerator\n(\nTiger.dot\n)\n\n\npolgraph\n(\ngraphgen\n,\n \npolicy\n,\n \npomdp\n)", 
+            "title": "Guide"
+        }, 
+        {
+            "location": "/man/guide/#package-guide", 
+            "text": "", 
+            "title": "Package Guide"
+        }, 
+        {
+            "location": "/man/guide/#installation", 
+            "text": "The package can be installed by either cloning the code and running build or by using the  add  function from  POMDPs.jl  Installation with POMDPs.jl:  Using   POMDPs  POMDPs . add ( SARSOP )", 
+            "title": "Installation"
+        }, 
+        {
+            "location": "/man/guide/#usage", 
+            "text": "SARSOP.jl makes it easy to interface with the APPL SARSOP solver. Once you have a model defined according to POMDPs.jl, you can generate policies by running the following:  using   SARSOP  using   POMDPModels   # this contains the TigerPOMDP model  # If the policy file already exists, it will be loaded by default  policy   =   POMDPPolicy ( tiger.policy )  # If the .pomdpx file exists call: pomdpfile = POMDPFile( \\path\\to\\file )   pomdp   =   TigerPOMDP ()   # this comes from POMDPModels, you will want this to be your concrete POMDP type  pomdpfile   =   POMDPFile ( pomdp ,   tiger.pomdpx )   # second arg is the file to which .pomdpx will be writeten  solver   =   SARSOPSolver ()  solve ( solver ,   pomdpfile ,   policy )   # no need to use solve if  mypolicy.policy  already exists   We can simulate, evalaute and create policy graphs:  # Policy can be used to map belief to actions  ns   =   n_states ( pomdp )   # implemented by user  b   =   initial_belief ( pomdp )   # implemented by user  a   =   action ( policy ,   b )   # simulate the SARSOP policy  simulator   =   SARSOPSimulator ( 5 ,   5 )  simulate ( simulator ,   policy ,   pomdpfile )  # evaluate the SARSOP policy  evaluator   =   SARSOPEvaluator ( 5 ,   5 )  evaluate ( evaluator ,   policy ,   pomdpfile )  # generates a policy graph  graphgen   =   PolicyGraphGenerator ( Tiger.dot )  polgraph ( graphgen ,   policy ,   pomdp )", 
+            "title": "Usage"
+        }, 
+        {
+            "location": "/man/details/", 
+            "text": "Solver Details\n\n\nSARSOP.jl\n is a wrapper for the APPL SARSOP code.  It provides an easy to use interface, that makes model and policy file generation simple.", 
+            "title": "Solver Details"
+        }, 
+        {
+            "location": "/man/details/#solver-details", 
+            "text": "SARSOP.jl  is a wrapper for the APPL SARSOP code.  It provides an easy to use interface, that makes model and policy file generation simple.", 
+            "title": "Solver Details"
+        }, 
+        {
+            "location": "/lib/api/", 
+            "text": "Solver Documentation\n\n\nDocumentation for the \nSARSOP.jl\n user interface.\n\n\n\n\nContents\n\n\n\n\nSolver Documentation\n\n\nContents\n\n\nIndex\n\n\nSolver\n\n\nPolicy\n\n\n\n\n\n\n\n\n\n\nIndex\n\n\n\n\nPOMDPs.action\n\n\nPOMDPs.solve\n\n\nSARSOP.MOMDPPolicy\n\n\nSARSOP.POMDPPolicy\n\n\nSARSOP.SARSOPPolicy\n\n\nSARSOP.SARSOPSolver\n\n\nSARSOP.alphas\n\n\n\n\n\n\nSolver\n\n\n#\n\n\nSARSOP.SARSOPSolver\n \n \nType\n.\n\n\n\n\nSARSOPSolver\n\n\n\n\n\nBase solver type for SARSOP. Contains an options dictionary with the following entries:\n\n\n\n\n'fast': use fast (but very picky) alternate parser for .pomdp files\n\n\n'randomization': turn on randomization for the sampling algorithm\n\n\n'precision': run ends when target precision is reached\n\n\n'timeout':  [sec] If running time exceeds the specified value, pomdpsol writes out a policy and terminates\n\n\n'memory': [MB] If memory usage exceeds the specified value, pomdpsol writes out a policy and terminates\n\n\n'trial-improvement-factor': temrinates when the gap between bounds reaches this value\n\n\n'policy-interval':  the time interval between two consecutive write-out of policy files\n\n\n\n\n#\n\n\nPOMDPs.solve\n \n \nFunction\n.\n\n\n\n\nsolve(solver, pomdp, policy)\n\n\n\n\n\nRuns pomdpsol using the options in 'solver' on 'pomdp',  and writes out a .policy xml file specified by 'policy'.\n\n\n\n\nPolicy\n\n\n#\n\n\nSARSOP.SARSOPPolicy\n \n \nType\n.\n\n\n\n\nSARSOPPolicy\n\n\n\n\n\nAbstract policy type - parent of POMDP and MOMDP policy types\n\n\n#\n\n\nSARSOP.POMDPPolicy\n \n \nType\n.\n\n\n\n\nPOMDPPolicy\n\n\n\n\n\nPolicy type for POMDPs that contains a reference to the .policy file generated by pomdpsol. Contains the alpha vectors and the action mapping required to execute a policy.\n\n\n#\n\n\nSARSOP.MOMDPPolicy\n \n \nType\n.\n\n\n\n\nMOMDPPolicy\n\n\n\n\n\nPolicy type for MOMDPs that contains a reference to the .policy file generated by pomdpsol. Contains the alpha vectors and the action mapping required to execute a policy.\n\n\n#\n\n\nPOMDPs.action\n \n \nFunction\n.\n\n\n\n\naction(policy, b, x)\n\n\n\n\n\nReturns the action index for a blief 'b' according to 'policy' given the fully observable variable index 'x'. Used for MOMDPs\n\n\naction(policy, b)\n\n\n\n\n\nReturns the action index for a blief 'b' according to 'policy' for a POMDP.\n\n\n#\n\n\nSARSOP.alphas\n \n \nFunction\n.\n\n\n\n\nalphas(policy)\n\n\n\n\n\nReturns the alpha vector matrix \nvector length x number vectors", 
+            "title": "Library"
+        }, 
+        {
+            "location": "/lib/api/#solver-documentation", 
+            "text": "Documentation for the  SARSOP.jl  user interface.", 
+            "title": "Solver Documentation"
+        }, 
+        {
+            "location": "/lib/api/#contents", 
+            "text": "Solver Documentation  Contents  Index  Solver  Policy", 
+            "title": "Contents"
+        }, 
+        {
+            "location": "/lib/api/#index", 
+            "text": "POMDPs.action  POMDPs.solve  SARSOP.MOMDPPolicy  SARSOP.POMDPPolicy  SARSOP.SARSOPPolicy  SARSOP.SARSOPSolver  SARSOP.alphas", 
+            "title": "Index"
+        }, 
+        {
+            "location": "/lib/api/#solver", 
+            "text": "#  SARSOP.SARSOPSolver     Type .   SARSOPSolver  Base solver type for SARSOP. Contains an options dictionary with the following entries:   'fast': use fast (but very picky) alternate parser for .pomdp files  'randomization': turn on randomization for the sampling algorithm  'precision': run ends when target precision is reached  'timeout':  [sec] If running time exceeds the specified value, pomdpsol writes out a policy and terminates  'memory': [MB] If memory usage exceeds the specified value, pomdpsol writes out a policy and terminates  'trial-improvement-factor': temrinates when the gap between bounds reaches this value  'policy-interval':  the time interval between two consecutive write-out of policy files   #  POMDPs.solve     Function .   solve(solver, pomdp, policy)  Runs pomdpsol using the options in 'solver' on 'pomdp',  and writes out a .policy xml file specified by 'policy'.", 
+            "title": "Solver"
+        }, 
+        {
+            "location": "/lib/api/#policy", 
+            "text": "#  SARSOP.SARSOPPolicy     Type .   SARSOPPolicy  Abstract policy type - parent of POMDP and MOMDP policy types  #  SARSOP.POMDPPolicy     Type .   POMDPPolicy  Policy type for POMDPs that contains a reference to the .policy file generated by pomdpsol. Contains the alpha vectors and the action mapping required to execute a policy.  #  SARSOP.MOMDPPolicy     Type .   MOMDPPolicy  Policy type for MOMDPs that contains a reference to the .policy file generated by pomdpsol. Contains the alpha vectors and the action mapping required to execute a policy.  #  POMDPs.action     Function .   action(policy, b, x)  Returns the action index for a blief 'b' according to 'policy' given the fully observable variable index 'x'. Used for MOMDPs  action(policy, b)  Returns the action index for a blief 'b' according to 'policy' for a POMDP.  #  SARSOP.alphas     Function .   alphas(policy)  Returns the alpha vector matrix  vector length x number vectors", 
+            "title": "Policy"
+        }
+    ]
+}

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Maxim Egorov">
+  
+  <title>Library - SARSOP.jl</title>
+  
+
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  <link href="../../assets/Documenter.css" rel="stylesheet">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Library";
+    var mkdocs_page_input_path = "lib/api.md";
+    var mkdocs_page_url = "/lib/api/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script src="../../assets/mathjaxhelper.js"></script>
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> SARSOP.jl</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">Home</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Manual</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/guide/">Guide</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/details/">Solver Details</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Library</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#solver-documentation">Solver Documentation</a></li>
+                
+                    <li><a class="toctree-l4" href="#contents">Contents</a></li>
+                
+                    <li><a class="toctree-l4" href="#index">Index</a></li>
+                
+                    <li><a class="toctree-l4" href="#solver">Solver</a></li>
+                
+                    <li><a class="toctree-l4" href="#policy">Policy</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">SARSOP.jl</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Library</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="https://github.com/JuliaPOMDP/SARSOP.jl" class="icon icon-github"> Edit on GitHub</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><a id='Solver-Documentation-1'></a></p>
+<h1 id="solver-documentation">Solver Documentation</h1>
+<p>Documentation for the <code>SARSOP.jl</code> user interface.</p>
+<p><a id='Contents-1'></a></p>
+<h2 id="contents">Contents</h2>
+<ul>
+<li><a href="./#Solver-Documentation-1">Solver Documentation</a><ul>
+<li><a href="./#Contents-1">Contents</a></li>
+<li><a href="./#Index-1">Index</a></li>
+<li><a href="./#Solver-1">Solver</a></li>
+<li><a href="./#Policy-1">Policy</a></li>
+</ul>
+</li>
+</ul>
+<p><a id='Index-1'></a></p>
+<h2 id="index">Index</h2>
+<ul>
+<li><a href="./#POMDPs.action"><code>POMDPs.action</code></a></li>
+<li><a href="./#POMDPs.solve"><code>POMDPs.solve</code></a></li>
+<li><a href="./#SARSOP.MOMDPPolicy"><code>SARSOP.MOMDPPolicy</code></a></li>
+<li><a href="./#SARSOP.POMDPPolicy"><code>SARSOP.POMDPPolicy</code></a></li>
+<li><a href="./#SARSOP.SARSOPPolicy"><code>SARSOP.SARSOPPolicy</code></a></li>
+<li><a href="./#SARSOP.SARSOPSolver"><code>SARSOP.SARSOPSolver</code></a></li>
+<li><a href="./#SARSOP.alphas"><code>SARSOP.alphas</code></a></li>
+</ul>
+<p><a id='Solver-1'></a></p>
+<h2 id="solver">Solver</h2>
+<p><a id='SARSOP.SARSOPSolver' href='#SARSOP.SARSOPSolver'>#</a>
+<strong><code>SARSOP.SARSOPSolver</code></strong> &mdash; <em>Type</em>.</p>
+<hr />
+<div class="codehilite"><pre><span></span>SARSOPSolver
+</pre></div>
+
+
+<p>Base solver type for SARSOP. Contains an options dictionary with the following entries:</p>
+<ul>
+<li>'fast': use fast (but very picky) alternate parser for .pomdp files</li>
+<li>'randomization': turn on randomization for the sampling algorithm</li>
+<li>'precision': run ends when target precision is reached</li>
+<li>'timeout':  [sec] If running time exceeds the specified value, pomdpsol writes out a policy and terminates</li>
+<li>'memory': [MB] If memory usage exceeds the specified value, pomdpsol writes out a policy and terminates</li>
+<li>'trial-improvement-factor': temrinates when the gap between bounds reaches this value</li>
+<li>'policy-interval':  the time interval between two consecutive write-out of policy files</li>
+</ul>
+<p><a id='POMDPs.solve' href='#POMDPs.solve'>#</a>
+<strong><code>POMDPs.solve</code></strong> &mdash; <em>Function</em>.</p>
+<hr />
+<div class="codehilite"><pre><span></span>solve(solver, pomdp, policy)
+</pre></div>
+
+
+<p>Runs pomdpsol using the options in 'solver' on 'pomdp',  and writes out a .policy xml file specified by 'policy'.</p>
+<p><a id='Policy-1'></a></p>
+<h2 id="policy">Policy</h2>
+<p><a id='SARSOP.SARSOPPolicy' href='#SARSOP.SARSOPPolicy'>#</a>
+<strong><code>SARSOP.SARSOPPolicy</code></strong> &mdash; <em>Type</em>.</p>
+<hr />
+<div class="codehilite"><pre><span></span>SARSOPPolicy
+</pre></div>
+
+
+<p>Abstract policy type - parent of POMDP and MOMDP policy types</p>
+<p><a id='SARSOP.POMDPPolicy' href='#SARSOP.POMDPPolicy'>#</a>
+<strong><code>SARSOP.POMDPPolicy</code></strong> &mdash; <em>Type</em>.</p>
+<hr />
+<div class="codehilite"><pre><span></span>POMDPPolicy
+</pre></div>
+
+
+<p>Policy type for POMDPs that contains a reference to the .policy file generated by pomdpsol. Contains the alpha vectors and the action mapping required to execute a policy.</p>
+<p><a id='SARSOP.MOMDPPolicy' href='#SARSOP.MOMDPPolicy'>#</a>
+<strong><code>SARSOP.MOMDPPolicy</code></strong> &mdash; <em>Type</em>.</p>
+<hr />
+<div class="codehilite"><pre><span></span>MOMDPPolicy
+</pre></div>
+
+
+<p>Policy type for MOMDPs that contains a reference to the .policy file generated by pomdpsol. Contains the alpha vectors and the action mapping required to execute a policy.</p>
+<p><a id='POMDPs.action' href='#POMDPs.action'>#</a>
+<strong><code>POMDPs.action</code></strong> &mdash; <em>Function</em>.</p>
+<hr />
+<div class="codehilite"><pre><span></span>action(policy, b, x)
+</pre></div>
+
+
+<p>Returns the action index for a blief 'b' according to 'policy' given the fully observable variable index 'x'. Used for MOMDPs</p>
+<div class="codehilite"><pre><span></span>action(policy, b)
+</pre></div>
+
+
+<p>Returns the action index for a blief 'b' according to 'policy' for a POMDP.</p>
+<p><a id='SARSOP.alphas' href='#SARSOP.alphas'>#</a>
+<strong><code>SARSOP.alphas</code></strong> &mdash; <em>Function</em>.</p>
+<hr />
+<div class="codehilite"><pre><span></span>alphas(policy)
+</pre></div>
+
+
+<p>Returns the alpha vector matrix <code>vector length x number vectors</code></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../../man/details/" class="btn btn-neutral" title="Solver Details"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/JuliaPOMDP/SARSOP.jl" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../../man/details/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+
+</body>
+</html>
