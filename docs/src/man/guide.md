@@ -7,7 +7,7 @@ The package can be installed by either cloning the code and running build or by 
 
 Installation with POMDPs.jl:
 ```julia
-Using POMDPs
+using POMDPs
 POMDPs.add("SARSOP")
 ```
 
