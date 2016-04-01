@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/JuliaPOMDP/SARSOP.jl.svg?branch=master)](https://travis-ci.org/JuliaPOMDP/SARSOP.jl)
-[![Coverage Status](https://coveralls.io/repos/JuliaPOMDP/SARSOP.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/JuliaPOMDP/SARSOP.jl?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/JuliaPOMDP/SARSOP.jl/badge.svg?branch=master)](https://coveralls.io/github/JuliaPOMDP/SARSOP.jl?branch=master)
 
 # SARSOP
 
