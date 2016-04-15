@@ -1,5 +1,5 @@
-if !isdir(Pkg.dir("POMDPXFile"))
-    Pkg.clone("https://github.com/sisl/POMDPXFile.jl")
+if !isdir(Pkg.dir("POMDPXFiles"))
+    Pkg.clone("https://github.com/JuliaPOMDP/POMDPXFiles.jl")
 end
 
 if ispath("appl-0.96")

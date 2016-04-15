@@ -9,7 +9,7 @@ type POMDPFile <: SARSOPFile
         return new(filename)
     end
     function POMDPFile(pomdp::POMDP, filename="model.pomdpx")
-        pomdpx = POMDPX(filename)
+        pomdpx = POMDPXFile(filename)
         println("Generating a pomdpx file: $(filename)")
         write(pomdp, pomdpx)
         return new(filename)
@@ -25,7 +25,7 @@ type MOMDPFile <: SARSOPFile
         return new(filename)
     end
     function MOMDPFile(pomdp::POMDP, filename="model.pomdpx")
-        pomdpx = MOMDPX(filename)
+        pomdpx = MOMDPXFile(filename)
         if !isfile(filename)
             println("Generating a pomdpx file: $(filename)")
             write(pomdp, pomdpx)
