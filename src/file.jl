@@ -1,4 +1,4 @@
-abstract SARSOPFile <: POMDP
+abstract SARSOPFile
 
 
 type POMDPFile <: SARSOPFile

@@ -2,6 +2,7 @@ module SARSOP
 
 using POMDPs
 using POMDPXFiles
+using POMDPToolbox
 import POMDPs: POMDP, Solver, Policy, action, value, solve, simulate
 
 export 
@@ -27,8 +28,8 @@ export
 
 include("constants.jl")
 include("file.jl")
-include("policy.jl")
 include("solver.jl")
+#include("policy.jl")
 include("simulator.jl")
 include("graph.jl")
 include("commons.jl")

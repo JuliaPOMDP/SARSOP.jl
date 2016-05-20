@@ -1,6 +1,9 @@
-if !isdir(Pkg.dir("POMDPXFiles"))
-    Pkg.clone("https://github.com/JuliaPOMDP/POMDPXFiles.jl")
-end
+using POMDPs
+
+POMDPs.add("POMDPXFiles")
+POMDPs.add("POMDPToolbox")
+POMDPs.add("POMDPModels")
+
 
 if ispath("appl-0.96")
     rm("appl-0.96", recursive=true)
