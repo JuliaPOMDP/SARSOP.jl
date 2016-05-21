@@ -141,9 +141,7 @@ updater(p::POMDPPolicy) = DiscreteUpdater(p.pomdp)
 
 create_policy(solver::SARSOPSolver, pomdp::Union{POMDP,POMDPFile}, filename::AbstractString="out.policy") = POMDPPolicy(pomdp, filename) 
 
-create_belief(bu::DiscreteUpdater) = DiscreteBelief(n_states(bu.du.pomdp))
-
-updater(p::POMDPPolicy) = DiscreteUpdater(p.pomdp)
+create_belief(bu::DiscreteUpdater) = DiscreteBelief(n_states(bu.pomdp))
 
 function initialize_belief(bu::DiscreteUpdater, initial_state_dist::AbstractDistribution, new_belief::DiscreteBelief=create_belief(bu))
     pomdp = bu.pomdp
