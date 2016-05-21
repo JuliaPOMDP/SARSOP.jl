@@ -70,17 +70,10 @@ Contains the alpha vectors and the action mapping required to execute a policy.
 type POMDPPolicy <: SARSOPPolicy
     filename::AbstractString
     alphas::Alphas
-    pomdp::Union{POMDP, SARSOPFile}
+    pomdp::POMDP
     action_map::Vector{Any}
     POMDPPolicy(filename::AbstractString, alphas::Alphas, pomdp::POMDP) = new(filename, alphas, pomdp, Any[])
     function POMDPPolicy(pomdp::POMDP, filename::AbstractString="out.policy")
-        self = new()
-        self.filename = filename
-        self.pomdp = pomdp
-        self.alphas = POMDPAlphas()
-        return self
-    end
-    function POMDPPolicy(pomdp::POMDPFile, filename::AbstractString="out.policy")
         self = new()
         self.filename = filename
         self.pomdp = pomdp
@@ -96,17 +89,6 @@ end
 Runs pomdpsol using the options in 'solver' on 'pomdp', 
 and writes out a .policy xml file specified by 'policy'.
 """
-function solve(solver::SARSOPSolver, pomdp::SARSOPFile, policy::POMDPPolicy=create_policy(solver, pomdp))
-    if isempty(solver.options)
-        run(`$EXEC_POMDP_SOL $(pomdp.filename) --output $(policy.filename)`)
-    else
-        options_list = _get_options_list(solver.options)
-        run(`$EXEC_POMDP_SOL $(pomdp.filename) --output $(policy.filename) $options_list`)
-    end
-    policy.alphas = POMDPAlphas(policy.filename)
-    return policy
-end
-
 function solve(solver::SARSOPSolver, pomdp::POMDP, policy::POMDPPolicy=create_policy(solver, pomdp))
     pomdp_file = POMDPFile(pomdp)
     if isempty(solver.options)
@@ -119,6 +101,18 @@ function solve(solver::SARSOPSolver, pomdp::POMDP, policy::POMDPPolicy=create_po
     return policy
 end
 
+#= Not supported, need .pomdpx file parser
+function solve(solver::SARSOPSolver, pomdp_file::AbstractString, policy::POMDPPolicy=create_policy(solver, pomdp))
+    if isempty(solver.options)
+        run(`$EXEC_POMDP_SOL $(pomdp_file) --output $(policy.filename)`)
+    else
+        options_list = _get_options_list(solver.options)
+        run(`$EXEC_POMDP_SOL $(pomdp_file) --output $(policy.filename) $options_list`)
+    end
+    policy.alphas = POMDPAlphas(policy.filename)
+    return policy
+end
+=#
 
 function load_policy(pomdp::POMDP, file_name::AbstractString)
     alphas = nothing
@@ -162,7 +156,7 @@ Returns the action index for a blief 'b' according to 'policy' for a POMDP.
 function action(policy::POMDPPolicy, b::DiscreteBelief)
     vectors = alphas(policy)
     actions = action_idxs(policy)
-    utilities = prod(vectors, b) 
+    utilities = product(vectors, b) 
     a = actions[indmax(utilities)] + 1
     return a
 end
@@ -171,7 +165,7 @@ end
 function value(policy::POMDPAlphas, b::DiscreteBelief)
     vectors = alphas(policy)
     actions = action_idxs(policy)
-    utilities = prod(vectors, b) 
+    utilities = product(vectors, b) 
     v =  maximum(utilities)
     return v
 end

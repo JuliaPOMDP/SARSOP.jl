@@ -24,7 +24,12 @@ export
     to_pomdpx,
     action,
     value,
-    alphas
+    alphas,
+    updater,
+    create_policy,
+    create_belief,
+    initialize_belief,
+    load_policy
 
 include("constants.jl")
 include("file.jl")
