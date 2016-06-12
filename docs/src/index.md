@@ -9,5 +9,5 @@
 
 ## Manual Outline
 
-    {contents}
-
+```@contents
+```
