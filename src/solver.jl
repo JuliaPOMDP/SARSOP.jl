@@ -78,6 +78,11 @@ type POMDPPolicy <: SARSOPPolicy
         self.filename = filename
         self.pomdp = pomdp
         self.alphas = POMDPAlphas()
+        self.action_map = Any[]
+        space = actions(pomdp)
+        for a in iterator(space)
+            push!(self.action_map, a)
+        end
         return self
     end
 end
@@ -158,7 +163,7 @@ function action(policy::POMDPPolicy, b::DiscreteBelief)
     actions = action_idxs(policy)
     utilities = product(vectors, b) 
     a = actions[indmax(utilities)] + 1
-    return a
+    return policy.action_map[a]
 end
 
 
