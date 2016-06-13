@@ -26,4 +26,4 @@ d = initial_state_distribution(pomdp)
 b = initialize_belief(up, d)
 a = action(policy, b)
 
-println("SARSOP tests passed")
+reqs = SARSOP.required_methods()
