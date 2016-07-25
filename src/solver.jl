@@ -106,6 +106,11 @@ function solve(solver::SARSOPSolver, pomdp::POMDP, policy::POMDPPolicy=create_po
     return policy
 end
 
+solve(solver::SARSOPSolver, mdp::MDP, policy::POMDPPolicy) = mdp_error()
+solve(solver::SARSOPSolver, mdp::MDP) = mdp_error()
+
+# solve(solver::SARSOPSolver
+
 #= Not supported, need .pomdpx file parser
 function solve(solver::SARSOPSolver, pomdp_file::AbstractString, policy::POMDPPolicy=create_policy(solver, pomdp))
     if isempty(solver.options)
@@ -139,6 +144,7 @@ Returns the belief updater (DiscreteUpdater) for SARSOP policies.
 updater(p::POMDPPolicy) = DiscreteUpdater(p.pomdp)
 
 create_policy(solver::SARSOPSolver, pomdp::Union{POMDP,POMDPFile}, filename::AbstractString="out.policy") = POMDPPolicy(pomdp, filename) 
+create_policy(solver::SARSOPSolver, mdp::MDP, filename::AbstractString="out.policy") = mdp_error() 
 
 create_belief(bu::DiscreteUpdater) = DiscreteBelief(n_states(bu.pomdp))
 
@@ -184,3 +190,5 @@ Returns the alpha vector matrix `vector length x number vectors`
 alphas(policy::SARSOPPolicy) = policy.alphas.alpha_vectors
 
 action_idxs(policy::SARSOPPolicy) = policy.alphas.alpha_actions
+
+mdp_error() = error("SARSOP is designed to solve POMDPs and is not set up to solve MDPs; consider using DiscreteValueIteration.jl to solve MDPs.")
