@@ -20,3 +20,10 @@ The SARSOP.jl package is licensed under the MIT "Expat" License:
 > CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 > TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 > SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+SARSOP.jl uses the [APPL](http://bigbird.comp.nus.edu.sg/pmwiki/farm/appl/) library.
+
+APPL is released under GNU GPL v2.0 and uses the following external libraries, which have their own licenses:
+
+- [ZMDP](https://github.com/trey0/zmdp) Which uses the Apache 2.0 license.
+- [tinyxml](http://www.grinninglizard.com/tinyxml/) Which uses the zlib license.
