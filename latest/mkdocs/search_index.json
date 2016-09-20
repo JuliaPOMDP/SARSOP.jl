@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/", 
-            "text": "SARSOP\n\n\nA Julia wrapper for the SARSOP partially observabe Markov decision process solver.\n\n\n\n\nPackage Features\n\n\n\n\nEasy to use interface for the APPL \nSARSOP package\n\n\nAutomtically generated .pomdpx files using the \nPOMDPs.jl\n interface\n\n\nAutomatic policy file parsing and policy generation\n\n\n\n\n\n\nManual Outline\n\n\n\n\nPackage Guide\n\n\nInstallation\n\n\nUsage\n\n\nSolver Details\n\n\n\n\n\n\nSolver Documentation\n\n\nContents\n\n\nIndex\n\n\nSolver\n\n\nPolicy\n\n\n\n\n\n\nSARSOP\n\n\nPackage Features\n\n\nManual Outline", 
+            "text": "SARSOP\n\n\nA Julia wrapper for the SARSOP partially observabe Markov decision process solver.\n\n\n\n\nPackage Features\n\n\n\n\nEasy to use interface for the APPL \nSARSOP package\n\n\nAutomtically generated .pomdpx files using the \nPOMDPs.jl\n interface\n\n\nAutomatic policy file parsing and policy generation\n\n\n\n\n\n\nManual Outline\n\n\n-\n \n[\nSolver\n \nDetails\n](\nman\n/\ndetails\n.\nmd\n#\nSolver\n-\nDetails\n-\n1\n)\n\n\n\n\n\n\n\n\nSolver Documentation\n\n\nContents\n\n\nIndex\n\n\nSolver\n\n\nPolicy\n\n\n\n\n\n\nPackage Guide\n\n\nInstallation\n\n\nUsage\n\n\n\n\n\n\nSARSOP\n\n\nPackage Features\n\n\nManual Outline", 
             "title": "Home"
         }, 
         {
@@ -17,7 +17,7 @@
         }, 
         {
             "location": "/#manual-outline", 
-            "text": "Package Guide  Installation  Usage  Solver Details    Solver Documentation  Contents  Index  Solver  Policy    SARSOP  Package Features  Manual Outline", 
+            "text": "-   [ Solver   Details ]( man / details . md # Solver - Details - 1 )    Solver Documentation  Contents  Index  Solver  Policy    Package Guide  Installation  Usage    SARSOP  Package Features  Manual Outline", 
             "title": "Manual Outline"
         }, 
         {
