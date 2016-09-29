@@ -26,5 +26,5 @@ SARSOP.jl uses the APPL library.
 
 APPL is released under GNU GPL v2.0 and uses the following external libraries, which have their own licenses:
 
-ZMDP Which uses the Apache 2.0 license.
-tinyxml Which uses the zlib license.
+- ZMDP Which uses the Apache 2.0 license.
+- tinyxml Which uses the zlib license.
