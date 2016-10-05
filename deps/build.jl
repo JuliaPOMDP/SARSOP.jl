@@ -9,7 +9,7 @@ if ispath("appl-0.96")
     rm("appl-0.96", recursive=true)
 end
 
-@windows_only begin
+if is_windows()
     if ispath("appl-0.96win")
         rm("appl-0.96win", recursive=true)
     end
@@ -21,7 +21,7 @@ end
     run(`unzip appl-0.96-win-x64.zip`)
 end
 
-@unix_only begin
+if is_unix()
     download("http://bigbird.comp.nus.edu.sg/pmwiki/farm/appl/uploads/Main/appl-0.96.tar.gz", "appl-0.96.tar.gz")
     run(`gunzip appl-0.96.tar.gz`)
     run(`tar -xvf appl-0.96.tar`)
@@ -50,7 +50,7 @@ end
         mv("temp.txt", filename)
     end
 
-    @osx_only begin
+    if is_apple()
         cd("MathLib")
         replaceLine("SparseMatrix.h", 24, "            inline SparseCol() {}\n")
         replaceLine("SparseVector.cpp", 491, "        //printf(\"Iter: %X\\n\", iter);\n")
