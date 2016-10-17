@@ -172,6 +172,9 @@ function action(policy::POMDPPolicy, b::DiscreteBelief)
     return policy.action_map[a]
 end
 
+function action(policy::POMDPPolicy, b::AbstractDistribution)
+    action(policy, convert(DiscreteBelief, b))
+end
 
 function value(policy::POMDPAlphas, b::DiscreteBelief)
     vectors = alphas(policy)
