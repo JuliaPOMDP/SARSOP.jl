@@ -143,20 +143,9 @@ Returns the belief updater (DiscreteUpdater) for SARSOP policies.
 """
 updater(p::POMDPPolicy) = DiscreteUpdater(p.pomdp)
 
-create_policy(solver::SARSOPSolver, pomdp::Union{POMDP,POMDPFile}, filename::AbstractString="out.policy") = POMDPPolicy(pomdp, filename) 
+create_policy(solver::SARSOPSolver, pomdp::POMDP, filename::AbstractString="out.policy") = POMDPPolicy(pomdp, filename) 
+create_policy(solver::SARSOPSolver, pomdp::POMDPFile, filename::AbstractString="out.policy") = POMDPPolicy(pomdp, filename) 
 create_policy(solver::SARSOPSolver, mdp::MDP, filename::AbstractString="out.policy") = mdp_error() 
-
-create_belief(bu::DiscreteUpdater) = DiscreteBelief(n_states(bu.pomdp))
-
-function initialize_belief(bu::DiscreteUpdater, initial_state_dist::AbstractDistribution, new_belief::DiscreteBelief=create_belief(bu))
-    pomdp = bu.pomdp
-    si = 1
-    for s in iterator(states(pomdp))
-        new_belief[si] = pdf(initial_state_dist, s)
-        si += 1
-    end
-    return new_belief
-end
 
 
 """
