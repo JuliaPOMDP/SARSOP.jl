@@ -78,11 +78,7 @@ type POMDPPolicy <: SARSOPPolicy
         self.filename = filename
         self.pomdp = pomdp
         self.alphas = POMDPAlphas()
-        self.action_map = Any[]
-        space = actions(pomdp)
-        for a in iterator(space)
-            push!(self.action_map, a)
-        end
+        self.action_map = ordered_actions(pomdp)
         return self
     end
 end
@@ -151,7 +147,7 @@ create_policy(solver::SARSOPSolver, mdp::MDP, filename::AbstractString="out.poli
 """
     action(policy, b)
 
-Returns the action index for a blief 'b' according to 'policy' for a POMDP.
+Returns the action index for a belief 'b' according to 'policy' for a POMDP.
 """
 function action(policy::POMDPPolicy, b::DiscreteBelief)
     vectors = alphas(policy)
