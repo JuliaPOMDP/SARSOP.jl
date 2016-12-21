@@ -26,8 +26,6 @@ d = initial_state_distribution(pomdp)
 b = initialize_belief(up, d)
 a = action(policy, b)
 
-reqs = SARSOP.required_methods()
-
 mdp = GridWorld()
 @test_throws ErrorException create_policy(solver, mdp)
 @test_throws ErrorException solve(solver, mdp, create_policy(solver, pomdp))
