@@ -122,8 +122,8 @@ end
 
 function load_policy(pomdp::POMDP, file_name::AbstractString)
     alphas = nothing
-    if isfile(filename)
-        alphas = POMDPAlphas(filename)
+    if isfile(file_name)
+        alphas = POMDPAlphas(file_name)
     else
         error("Policy file ", file_name, " does not exist")
     end
