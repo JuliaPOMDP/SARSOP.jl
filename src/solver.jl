@@ -18,7 +18,7 @@ type SARSOPSolver <: Solver
     function SARSOPSolver(;
         fast::Bool=false, # Use fast (but very picky) alternate parser for .pomdp files
         randomization::Bool=false, # run ends when target precision is reached
-        precison::Float64=DEFAULT_PRECISION, # Turn on randomization for the sampling algorithm.
+        precision::Float64=DEFAULT_PRECISION, # Turn on randomization for the sampling algorithm.
         timeout::Float64=NaN, # [sec] If running time exceeds the specified value, pomdpsol writes out a policy and terminates
         memory::Float64=NaN, # [MB] If memory usage exceeds the specified value, pomdpsol writes out a policy and terminates
         trial_improvement_factor::Float64=DEFAULT_TRIAL_IMPROVEMENT_FACTOR, 
