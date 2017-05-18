@@ -34,7 +34,7 @@ type SARSOPSolver <: Solver
         if randomization
             options["randomization"] = ""
         end
-        if !isapprox(precison, DEFAULT_PRECISION)
+        if !isapprox(precision, DEFAULT_PRECISION)
             options["precision"] = precison 
         end
         if !isnan(timeout)
