@@ -1,4 +1,4 @@
-type SARSOPSimulator <: Simulator
+mutable struct SARSOPSimulator <: Simulator
     options::Dict{AbstractString,Any}
 
     function SARSOPSimulator(
@@ -20,13 +20,13 @@ type SARSOPSimulator <: Simulator
             options["srand"] = srand
         end
         if !isempty(output_file)
-            options["output-file"] = output_file 
+            options["output-file"] = output_file
         end
 
         new(options)
     end
 end
-type SARSOPEvaluator
+mutable struct SARSOPEvaluator
 
     options::Dict{AbstractString,Any}
 
@@ -35,10 +35,10 @@ type SARSOPEvaluator
         sim_num::Int; # number of simulations to run
         fast::Bool=false, # use fast (but very picky) alternate parser for .pomdp files
         srand::Union{Int64,Void}=nothing, # set the rand seed for the simulation
-        memory::Float64=NaN, # [MD] No memory limit by default. 
+        memory::Float64=NaN, # [MD] No memory limit by default.
                              # If memory usage exceeds the specified value,
                              # the evaluator will switch back to a more
-                             # memory conservative (and slow) method.        
+                             # memory conservative (and slow) method.
         output_file::AbstractString=""
         )
 
@@ -56,7 +56,7 @@ type SARSOPEvaluator
             options["memory"] = memory
         end
         if !isempty(output_file)
-            options["output-file"] = output_file 
+            options["output-file"] = output_file
         end
 
         new(options)

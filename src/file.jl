@@ -1,7 +1,7 @@
-abstract SARSOPFile
+abstract type SARSOPFile end
 
 
-type POMDPFile <: SARSOPFile
+mutable struct POMDPFile <: SARSOPFile
     filename::AbstractString
 
     function POMDPFile(filename)
@@ -15,4 +15,3 @@ type POMDPFile <: SARSOPFile
         return new(filename)
     end
 end
-
