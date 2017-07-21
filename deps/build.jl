@@ -15,7 +15,6 @@ if is_windows()
     end
     download("https://github.com/personalrobotics/appl/archive/0.96.zip", "appl-0.96win.zip")
     run(`unzip appl-0.96win.zip`)
-    mv("appl-0.96win", "appl-0.96")
     cd("appl-0.96/src")
     download("http://web.stanford.edu/group/sisl/resources/appl-0.96-win-x64.zip", "appl-0.96-win-x64.zip")
     run(`unzip appl-0.96-win-x64.zip`)
