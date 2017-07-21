@@ -13,7 +13,7 @@ if is_windows()
     if ispath("appl-0.96win")
         rm("appl-0.96win", recursive=true)
     end
-    download("http://bigbird.comp.nus.edu.sg/pmwiki/farm/appl/uploads/Main/appl-0.96win.zip", "appl-0.96win.zip")
+    download("https://github.com/personalrobotics/appl/archive/0.96.zip", "appl-0.96win.zip")
     run(`unzip appl-0.96win.zip`)
     mv("appl-0.96win", "appl-0.96")
     cd("appl-0.96/src")
@@ -22,7 +22,7 @@ if is_windows()
 end
 
 if is_unix()
-    download("http://bigbird.comp.nus.edu.sg/pmwiki/farm/appl/uploads/Main/appl-0.96.tar.gz", "appl-0.96.tar.gz")
+    download("https://github.com/personalrobotics/appl/archive/0.96.tar.gz", "appl-0.96.tar.gz")
     run(`gunzip appl-0.96.tar.gz`)
     run(`tar -xvf appl-0.96.tar`)
     rm("appl-0.96.tar")
