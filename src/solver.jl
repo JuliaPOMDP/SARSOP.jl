@@ -90,13 +90,21 @@ end
 Runs pomdpsol using the options in 'solver' on 'pomdp',
 and writes out a .policy xml file specified by 'policy'.
 """
-function solve(solver::SARSOPSolver, pomdp::POMDP, policy::POMDPPolicy=create_policy(solver, pomdp))
-    pomdp_file = POMDPFile(pomdp)
+function solve(solver::SARSOPSolver, pomdp::POMDP, policy::POMDPPolicy=create_policy(solver, pomdp); silent=false)
+    pomdp_file = POMDPFile(pomdp, silent=silent)
     if isempty(solver.options)
-        run(`$EXEC_POMDP_SOL $(pomdp_file.filename) --output $(policy.filename)`)
+        if silent == true
+            success(`$EXEC_POMDP_SOL $(pomdp_file.filename) --output $(policy.filename)`)
+        else
+            run(`$EXEC_POMDP_SOL $(pomdp_file.filename) --output $(policy.filename)`)
+        end
     else
         options_list = _get_options_list(solver.options)
-        run(`$EXEC_POMDP_SOL $(pomdp_file.filename) --output $(policy.filename) $options_list`)
+        if silent == true
+            success(`$EXEC_POMDP_SOL $(pomdp_file.filename) --output $(policy.filename) $options_list`)
+        else
+            run(`$EXEC_POMDP_SOL $(pomdp_file.filename) --output $(policy.filename) $options_list`)
+        end
     end
     policy.alphas = POMDPAlphas(policy.filename)
     return policy
