@@ -49,5 +49,10 @@ if is_unix()
         mv("temp.txt", filename)
     end
 
+    if is_apple()
+        cd("MathLib")
+        replaceLine("SparseMatrix.h", 24, "            inline SparseCol() {}\n")
+        cd("../")
+    end
     run(`make`)
 end
