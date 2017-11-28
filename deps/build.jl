@@ -30,6 +30,7 @@ if is_unix()
     end
     cd("appl-0.96/src")
 
+    #=
     function replaceLine(filename::AbstractString, linenum::Int, textofline::AbstractString)
         outfile = open("temp.txt", "w")
         infile = open(filename)
@@ -55,5 +56,6 @@ if is_unix()
         replaceLine("SparseVector.cpp", 491, "        //printf(\"Iter: %X\\n\", iter);\n")
         cd("../")
     end
+    =#
     run(`make`)
 end

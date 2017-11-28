@@ -8,9 +8,11 @@ mutable struct POMDPFile <: SARSOPFile
         @assert isfile(filename) "Pomdpx file $(filename) does not exist"
         return new(filename)
     end
-    function POMDPFile(pomdp::POMDP, filename="model.pomdpx")
+    function POMDPFile(pomdp::POMDP, filename="model.pomdpx"; silent=false)
         pomdpx = POMDPXFile(filename)
-        println("Generating a pomdpx file: $(filename)")
+        if silent == false
+            println("Generating a pomdpx file: $(filename)")
+        end
         write(pomdp, pomdpx)
         return new(filename)
     end
