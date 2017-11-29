@@ -90,8 +90,8 @@ end
 Runs pomdpsol using the options in 'solver' on 'pomdp',
 and writes out a .policy xml file specified by 'policy'.
 """
-function solve(solver::SARSOPSolver, pomdp::POMDP, policy::POMDPPolicy=create_policy(solver, pomdp); silent=false)
-    pomdp_file = POMDPFile(pomdp, silent=silent)
+function solve(solver::SARSOPSolver, pomdp::POMDP, policy::POMDPPolicy=create_policy(solver, pomdp); silent=false, pomdp_file_name::String="model.pomdpx")
+    pomdp_file = POMDPFile(pomdp, pomdp_file_name, silent=silent)
     if isempty(solver.options)
         if silent == true
             success(`$EXEC_POMDP_SOL $(pomdp_file.filename) --output $(policy.filename)`)
@@ -165,9 +165,9 @@ function action(policy::POMDPPolicy, b::DiscreteBelief)
     return policy.action_map[a]
 end
 
-function action(policy::POMDPPolicy, b)
-    action(policy, convert(DiscreteBelief, b))
-end
+# function action(policy::POMDPPolicy, b)
+#     action(policy, convert(DiscreteBelief, b))
+# end
 
 function value(policy::POMDPAlphas, b::DiscreteBelief)
     vectors = alphas(policy)
