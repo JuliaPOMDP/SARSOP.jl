@@ -21,41 +21,13 @@ if is_windows()
 end
 
 if is_unix()
-    download("https://github.com/personalrobotics/appl/archive/0.96.tar.gz", "appl-0.96.tar.gz")
-    run(`gunzip appl-0.96.tar.gz`)
-    run(`tar -xvf appl-0.96.tar`)
-    rm("appl-0.96.tar")
-    if isfile("appl-0.96.tar")
-        rm("appl-0.96.tar")
+    if ispath("appl")
+        rm("appl", recursive=true)
     end
-    cd("appl-0.96/src")
-
-    #=
-    function replaceLine(filename::AbstractString, linenum::Int, textofline::AbstractString)
-        outfile = open("temp.txt", "w")
-        infile = open(filename)
-        i = 1
-        for line in eachline(infile)
-            if i == linenum
-                write(outfile, textofline)
-                i += 1
-            else
-                write(outfile, line)
-                i += 1
-            end
-        end
-        close(outfile)
-        close(infile)
-        rm(filename)
-        mv("temp.txt", filename)
-    end
-
-    if is_apple()
-        cd("MathLib")
-        replaceLine("SparseMatrix.h", 24, "            inline SparseCol() {}\n")
-        replaceLine("SparseVector.cpp", 491, "        //printf(\"Iter: %X\\n\", iter);\n")
-        cd("../")
-    end
-    =#
+    # note: v0.96 of appl does not seem to compile properly on some OSX versions
+    run(`git clone https://github.com/personalrobotics/appl/`)
+    cd("appl")
+    run(`git reset --hard e433ee63e542551a7c6d35ec2d71192fd5a06d62`)
+    cd("src")
     run(`make`)
 end

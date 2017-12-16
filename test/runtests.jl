@@ -3,7 +3,7 @@ using POMDPModels
 using Base.Test
 
 # Test SARSOP internals
-pomdp_file = POMDPFile(Pkg.dir("SARSOP", "deps", "appl-0.96", "examples", "POMDPX", "Tiger.pomdpx"))
+pomdp_file = POMDPFile(Pkg.dir("SARSOP", "deps", "appl", "examples", "POMDPX", "Tiger.pomdpx"))
 solver = SARSOPSolver()
 
 # Test simple interface
@@ -19,7 +19,7 @@ evaluate(evaluator, pomdp_file, policy)
 graphgen = PolicyGraphGenerator("Tiger.dot")
 polgraph(graphgen, pomdp_file, policy)
 
-to_pomdpx(POMDPFile(Pkg.dir("SARSOP", "deps", "appl-0.96", "examples", "POMDP", "Tiger.pomdp")))
+to_pomdpx(POMDPFile(Pkg.dir("SARSOP", "deps", "appl", "examples", "POMDP", "Tiger.pomdp")))
 
 up = updater(policy)
 d = initial_state_distribution(pomdp)
