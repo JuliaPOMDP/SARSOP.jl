@@ -18,6 +18,8 @@ if is_windows()
     cd("appl-0.96/src")
     download("http://web.stanford.edu/group/sisl/resources/appl-0.96-win-x64.zip", "appl-0.96-win-x64.zip")
     run(`unzip appl-0.96-win-x64.zip`)
+    cd(Pkg.dir("SARSOP", "deps"))
+    run(`cmd /c move appl-0.96 appl`)
 end
 
 if is_unix()
