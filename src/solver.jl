@@ -153,18 +153,18 @@ create_policy(solver::SARSOPSolver, mdp::MDP, filename::AbstractString="out.poli
 
 
 # This will get removed when AlphaVectorPolicy comes online
-# 
+#
 # alphas are |A|x|S| (LD: it looks like |S|x|A|)
 # computes dot product of alpha vectors and belief
 # util is array with utility of each alpha vecotr for belief b
 function product(alphas::Matrix{Float64}, b::DiscreteBelief)
     @assert size(alphas, 1) == length(b) "Alpha and belief sizes not equal"
-    n = size(alphas, 2) 
+    n = size(alphas, 2)
     util = zeros(n)
     for i = 1:n
         s = 0.0
         for j = 1:length(b)
-            s += alphas[j,i]*b[j]
+            s += alphas[j,i]*b.b[j]
         end
         util[i] = s
     end
