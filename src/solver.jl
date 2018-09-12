@@ -182,7 +182,7 @@ function action(policy::POMDPPolicy, b::DiscreteBelief)
     vectors = alphas(policy)
     actions = action_idxs(policy)
     utilities = product(vectors, b)
-    a = actions[indmax(utilities)] + 1
+    a = actions[argmax(utilities)] + 1
     return policy.action_map[a]
 end
 
