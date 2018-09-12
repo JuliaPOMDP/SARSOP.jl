@@ -2,7 +2,8 @@ module SARSOP
 
 using POMDPs
 using POMDPXFiles
-using POMDPToolbox
+using BeliefUpdaters
+using POMDPModelTools
 import POMDPs: POMDP, Solver, Policy, action, value, solve, simulate, updater, initialize_belief
 
 export 

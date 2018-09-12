@@ -1,15 +1,9 @@
-using POMDPs
-
-POMDPs.add("POMDPXFiles")
-POMDPs.add("POMDPToolbox")
-POMDPs.add("POMDPModels")
-
 
 if ispath("appl-0.96")
     rm("appl-0.96", recursive=true)
 end
 
-if is_windows()
+if Sys.iswindows()
     if ispath("appl-0.96win")
         rm("appl-0.96win", recursive=true)
     end
@@ -18,11 +12,12 @@ if is_windows()
     cd("appl-0.96/src")
     download("http://web.stanford.edu/group/sisl/resources/appl-0.96-win-x64.zip", "appl-0.96-win-x64.zip")
     run(`unzip appl-0.96-win-x64.zip`)
-    cd(Pkg.dir("SARSOP", "deps"))
+    import SARSOP
+    cd(joinpath(dirname(pathof(SARSOP)), "..", "deps"))
     run(`cmd /c move appl-0.96 appl`)
 end
 
-if is_unix()
+if Sys.isunix()
     if ispath("appl")
         rm("appl", recursive=true)
     end

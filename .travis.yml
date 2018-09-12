@@ -3,15 +3,18 @@ os:
   - linux
   - osx
 julia:
-  - 0.6
+  - 0.7
+  - 1.0
 notifications:
   email: false
 before_script:
   - export PATH=$HOME/.local/bin:$PATH
+  
 script:
+  - git clone https://github.com/JuliaRegistries/General  $(julia -e 'import Pkg; println(joinpath(Pkg.depots1(), "registries", "General"))')    
+  - git clone https://github.com/JuliaPOMDP/Registry  $(julia -e 'import Pkg; println(joinpath(Pkg.depots1(), "registries", "JuliaPOMDP"))')  
   - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
-  - julia --check-bounds=yes -e 'Pkg.clone(pwd()); Pkg.clone("https://github.com/sisl/POMDPs.jl"); Pkg.build("SARSOP"); Pkg.test("SARSOP", coverage=true)'
+  - julia --project --color=yes --check-bounds=yes -e 'import Pkg; Pkg.build(); Pkg.test("SARSOP"; coverage=true)'  
 after_success:
-  - julia -e 'cd(Pkg.dir("SARSOP")); Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'
-  - julia -e 'Pkg.clone("https://github.com/MichaelHatherly/Documenter.jl")'
-  - julia -e 'cd(Pkg.dir("SARSOP")); include(joinpath("docs", "make.jl"))'
+  - julia --project --color=yes -e 'import Pkg; Pkg.add("Coverage"); using Coverage; Codecov.submit(Codecov.process_folder())'  
+  - julia --project --color=yes -e 'import Pkg; Pkg.add("Documenter"); include(joinpath("docs", "make.jl"))'
