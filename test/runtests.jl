@@ -1,4 +1,5 @@
 using SARSOP
+using POMDPs
 using POMDPModels
 using Test
 
