@@ -128,6 +128,10 @@ function solve(solver::SARSOPSolver, pomdp_file::AbstractString, policy::POMDPPo
 end
 =#
 
+
+"""
+Load a policy from an xml file output by SARSOP.
+"""
 function load_policy(pomdp::POMDP, file_name::AbstractString)
     alphas = nothing
     if isfile(file_name)
@@ -143,7 +147,8 @@ end
 
 """
     updater(policy::SARSOPPolicy)
-Returns the belief updater (DiscreteUpdater) for SARSOP policies.
+
+Return a default belief updater (DiscreteUpdater) for SARSOP policies.
 """
 updater(p::POMDPPolicy) = DiscreteUpdater(p.pomdp)
 
