@@ -100,7 +100,7 @@ function solve(solver::SARSOPSolver, pomdp::POMDP; silent=false, policy_filename
         end
     end
     alphas = POMDPAlphas(policy_filename)
-    return AlphaVectorPolicy(pomdp, alphas.alpha_vectors, alphas.alpha_actions)
+    return AlphaVectorPolicy(pomdp, alphas.alpha_vectors, alphas.alpha_actions .+ 1)
 end
 
 solve(solver::SARSOPSolver, mdp::MDP; kwargs...) = mdp_error()
@@ -116,7 +116,7 @@ function load_policy(pomdp::POMDP, file_name::AbstractString)
         error("Policy file ", file_name, " does not exist")
     end
     policy = POMDPPolicy(pomdp, file_name)
-    return AlphaVectorPolicy(pomdp, alphas.alpha_vectors, alphas.alpha_actions)
+    return AlphaVectorPolicy(pomdp, alphas.alpha_vectors, alphas.alpha_actions .+ 1)
 end
 
 mdp_error() = error("SARSOP is designed to solve POMDPs and is not set up to solve MDPs; consider using DiscreteValueIteration.jl to solve MDPs.")
