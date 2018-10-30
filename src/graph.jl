@@ -35,7 +35,7 @@ mutable struct PolicyGraphGenerator
     end
 end
 
-function polgraph(graphgen::PolicyGraphGenerator, pomdp::SARSOPFile, policy::SARSOPPolicy)
+function polgraph(graphgen::PolicyGraphGenerator, pomdp::SARSOPFile, policy_filename::String)
     options_list = _get_options_list(graphgen.options)
-    run(`$EXEC_POLICY_GRAPH_GENERATOR $(pomdp.filename) --policy-file $(policy.filename) $options_list`)
+    run(`$EXEC_POLICY_GRAPH_GENERATOR $(pomdp.filename) --policy-file $(policy_filename) $options_list`)
 end
