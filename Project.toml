@@ -4,14 +4,15 @@ repo = "https://github.com/JuliaPOMDP/SARSOP.jl"
 version = "0.2.0"
 
 [deps]
-POMDPs = "a93abf59-7444-517b-a68a-c42f96afdd7d"
-POMDPXFiles = "c6f6ee83-58c6-5336-a19f-2c76817e1af6"
-BeliefUpdaters = "8bb6e9a1-7d73-552c-a44a-e5dc5634aac4"
 POMDPModelTools = "08074719-1b2a-587c-a292-00f91cc44415"
+POMDPPolicies = "182e52fb-cfd0-5e46-8c26-fd0667c990f4"
+POMDPXFiles = "c6f6ee83-58c6-5336-a19f-2c76817e1af6"
+POMDPs = "a93abf59-7444-517b-a68a-c42f96afdd7d"
 
 [extras]
+BeliefUpdaters = "8bb6e9a1-7d73-552c-a44a-e5dc5634aac4"
 POMDPModels = "355abbd5-f08e-5560-ac9e-8b5f2592a0ca"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
-test = ["POMDPModels", "Test"]
+test = ["POMDPModels", "Test", "BeliefUpdaters"]

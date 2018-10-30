@@ -4,6 +4,7 @@ using POMDPs
 using POMDPXFiles
 using BeliefUpdaters
 using POMDPModelTools
+using POMDPPolicies
 import POMDPs: POMDP, Solver, Policy, action, value, solve, simulate, updater, initialize_belief
 
 export 
