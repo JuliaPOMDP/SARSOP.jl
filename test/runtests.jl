@@ -2,33 +2,44 @@ using SARSOP
 using POMDPs
 using POMDPModels
 using BeliefUpdaters
+using POMDPSimulators
 using Test
 
-# Test SARSOP internals
-pomdp_file = POMDPFile(joinpath(dirname(pathof(SARSOP)),"..", "deps", "appl", "examples", "POMDPX", "Tiger.pomdpx"))
-solver = SARSOPSolver()
+@testset "POMDPFile" begin
+    pomdp_file = POMDPFile(joinpath(dirname(pathof(SARSOP)),"..", "deps", "appl", "examples", "POMDPX", "Tiger.pomdpx"))
+    @test isfile(pomdp_file.filename)
+    tiger_file = POMDPFile(TigerPOMDP())
+    @test isfile(tiger_file.filename)
+end
 
-# Test simple interface
-pomdp = TigerPOMDP()
-policy = solve(solver, pomdp)
+@testset "Basic interface" begin
+    solver = SARSOPSolver()
+    pomdp = TigerPOMDP()
+    policy = solve(solver, pomdp)
+    mdp = SimpleGridWorld()
+    @test_throws ErrorException solve(solver, mdp)
+    @requirements_info solver pomdp
+    sim = RolloutSimulator(max_steps=100)
+    r = simulate(sim, pomdp, policy, DiscreteUpdater(pomdp))
+    @test r > 0.
+end
 
-simulator = SARSOPSimulator(5, 5)
-simulate(simulator, pomdp_file, "policy.out")
+@testset "Simulator" begin 
+    simulator = SARSOPSimulator(sim_len=5, sim_num=5)
+    simulate(simulator)
+    evaluator = SARSOPEvaluator(sim_len=5, sim_num=5)
+    evaluate(evaluator)
+end
 
-evaluator = SARSOPEvaluator(5, 5)
-evaluate(evaluator, pomdp_file, "policy.out")
+@testset "Policy Graph" begin 
+    graph_generator = PolicyGraphGenerator(graph_filename="tiger.dot", pomdp_filename="model.pomdpx")
+    generate_graph(graph_generator)
+    @test isfile(graph_generator.graph_filename)
+end
 
-graphgen = PolicyGraphGenerator("Tiger.dot")
-polgraph(graphgen, pomdp_file, "policy.out")
-
-to_pomdpx(POMDPFile(joinpath(dirname(pathof(SARSOP)), "..", "deps", "appl", "examples", "POMDP", "Tiger.pomdp")))
-
-up = DiscreteUpdater(pomdp)
-d = initialstate_distribution(pomdp)
-b = initialize_belief(up, d)
-a = action(policy, b)
-
-mdp = GridWorld()
-# @test_throws ErrorException create_policy(solver, mdp)
-# @test_throws ErrorException solve(solver, mdp, create_policy(solver, pomdp))
-@test_throws ErrorException solve(solver, mdp)
+@testset "Load policy" begin 
+    pomdp = TigerPOMDP()
+    policy = solve(SARSOPSolver(verbose=false), pomdp)
+    policy2 = load_policy(pomdp, "policy.out")
+    @test policy.alphas == policy2.alphas
+end
