@@ -13,7 +13,9 @@ You must have [POMDPs.jl](https://github.com/JuliaPOMDP/POMDPs.jl) installed. To
 
 ```julia
 using POMDPs
-POMDPs.add("SARSOP")
+using Pkg
+POMDPs.add_registry()
+Pkg.add("SARSOP")
 ```
 
 ## Documentation

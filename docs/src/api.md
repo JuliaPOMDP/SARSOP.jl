@@ -25,12 +25,18 @@ SARSOPSolver
 solve
 ```
 
-## Policy
+## Simulation and Evaluation
+
+```@docs 
+SARSOPSimulator
+simulate
+SARSOPEvaluator
+evaluate
+```
+
+## Policy Graph Generation 
 
 ```@docs
-SARSOPPolicy
-POMDPPolicy
-MOMDPPolicy
-action
-alphas
+PolicyGraphGenerator
+generate_graph
 ```

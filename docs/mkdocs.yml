@@ -5,11 +5,6 @@ site_author:      Maxim Egorov
 
 theme: readthedocs
 
-extra:
-  palette:
-    primary: 'indigo'
-    accent:  'blue'
-
 extra_css:
   - assets/Documenter.css
 
@@ -24,11 +19,3 @@ extra_javascript:
   - assets/mathjaxhelper.js
 
 docs_dir: 'build'
-
-pages:
-- Home: index.md
-- Manual: 
-    - Guide: man/guide.md
-    - Solver Details: man/details.md
-- Library: lib/api.md
-
