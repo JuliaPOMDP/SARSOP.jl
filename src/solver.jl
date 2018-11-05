@@ -69,7 +69,8 @@ function POMDPs.solve(solver::SARSOPSolver, pomdp::POMDP; kwargs...)
         success(`$EXEC_POMDP_SOL $(pomdp_file.filename) --output $(solver.policy_filename) $options`)
     end
     alphas = POMDPAlphas(solver.policy_filename)
-    return AlphaVectorPolicy(pomdp, alphas.alpha_vectors, getindex.(Ref(ordered_actions(pomdp)), alphas.alpha_actions .+ 1))
+    action_map = broadcast(x -> getindex(ordered_actions(pomdp), x), alphas.alpha_actions .+ 1)
+    return AlphaVectorPolicy(pomdp, alphas.alpha_vectors, action_map)
 end
 
 POMDPs.solve(solver::SARSOPSolver, mdp::MDP) = mdp_error()
@@ -88,7 +89,8 @@ function load_policy(pomdp::POMDP, file_name::AbstractString)
     else
         error("Policy file ", file_name, " does not exist")
     end
-    return AlphaVectorPolicy(pomdp, alphas.alpha_vectors, getindex.(Ref(ordered_actions(pomdp)), alphas.alpha_actions .+ 1))
+    action_map = broadcast(x -> getindex(ordered_actions(pomdp), x), alphas.alpha_actions .+ 1)
+    return AlphaVectorPolicy(pomdp, alphas.alpha_vectors, action_map)
 end
 
 """
