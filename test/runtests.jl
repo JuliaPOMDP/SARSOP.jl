@@ -21,7 +21,6 @@ end
     @requirements_info solver pomdp
     sim = RolloutSimulator(max_steps=100)
     r = simulate(sim, pomdp, policy, DiscreteUpdater(pomdp))
-    @test r > 0.
 end
 
 @testset "Simulator" begin 
