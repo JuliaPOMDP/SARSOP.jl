@@ -1,74 +1,96 @@
-mutable struct SARSOPSimulator <: Simulator
-    options::Dict{AbstractString,Any}
+"""
+    SARSOPSimulator
 
-    function SARSOPSimulator(
-        sim_len::Int, # number of steps to use in simulation
-        sim_num::Int; # number of simulations to run
-        fast::Bool=false, # use fast (but very picky) alternate parser for .pomdp files
-        srand::Union{Int64,Nothing}=nothing, # set the rand seed for the simulation
-        output_file::AbstractString=""
-        )
+simulate a sarsop policy from the xml files 
+* `sim_len`  number of steps to use in simulation (default 10)
+* `sim_num` number of simulations
+* `fast` use fast (but very picky) alternate parser for .pomdp files
+* `srand` set the random seed for the simulation
+* `output_file` where to write the results
+* `policy_filename` policy file location
+* `pomdp_filename` pomdpx file location
+"""
+@with_kw struct SARSOPSimulator
+    sim_len::Int = 10
+    sim_num::Int = 10
+    fast::Bool = false 
+    srand::Union{Int64, Nothing} = nothing 
+    output_file::AbstractString = ""
+    policy_filename::AbstractString = "policy.out"
+    pomdp_filename::AbstractString = "model.pomdpx"
+end
 
-        options = Dict{AbstractString,Any}()
-
-        options["simLen"] = sim_len
-        options["simNum"] = sim_num
-        if fast
-            options["fast"] = ""
-        end
-        if isa(srand, Int)
-            options["srand"] = srand
-        end
-        if !isempty(output_file)
-            options["output-file"] = output_file
-        end
-
-        new(options)
+function get_simulator_options(sim::SARSOPSimulator)
+    options = String[]
+    push!(options, "--simLen")
+    push!(options, string(sim.sim_len))
+    push!(options, "--simNum")
+    push!(options, string(sim.sim_num))
+    if sim.fast 
+        push!(options, "--fast")
     end
-end
-mutable struct SARSOPEvaluator
-
-    options::Dict{AbstractString,Any}
-
-    function SARSOPEvaluator(
-        sim_len::Int, # number of steps to use in simulation
-        sim_num::Int; # number of simulations to run
-        fast::Bool=false, # use fast (but very picky) alternate parser for .pomdp files
-        srand::Union{Int64,Nothing}=nothing, # set the rand seed for the simulation
-        memory::Float64=NaN, # [MD] No memory limit by default.
-                             # If memory usage exceeds the specified value,
-                             # the evaluator will switch back to a more
-                             # memory conservative (and slow) method.
-        output_file::AbstractString=""
-        )
-
-        options = Dict{AbstractString,Any}()
-
-        options["simLen"] = sim_len
-        options["simNum"] = sim_num
-        if fast
-            options["fast"] = ""
-        end
-        if isa(srand, Int)
-            options["srand"] = srand
-        end
-        if !isnan(memory)
-            options["memory"] = memory
-        end
-        if !isempty(output_file)
-            options["output-file"] = output_file
-        end
-
-        new(options)
+    if sim.srand != nothing 
+        push!(options, "--srand")
+        push!(options, string(sim.srand))
     end
+    push!(options, "--output-file")
+    push!(options, sim.output_file)
+    return options 
 end
 
-function simulate(simulator::SARSOPSimulator, pomdp::SARSOPFile, policy_filename::String)
-    options_list = _get_options_list(simulator.options)
-    run(`$EXEC_POMDP_SIM $(pomdp.filename) --policy-file $(policy_filename) $options_list`)
+function POMDPs.simulate(sim::SARSOPSimulator)
+    options_list = get_simulator_options(sim)
+    run(`$EXEC_POMDP_SIM $(sim.pomdp_filename) --policy-file $(sim.policy_filename) $options_list`)
 end
 
-function evaluate(evaluator::SARSOPEvaluator, pomdp::SARSOPFile, policy_filename::String)
-    options_list = _get_options_list(evaluator.options)
-    run(`$EXEC_POMDP_EVAL $(pomdp.filename) --policy-file $(policy_filename) $options_list`)
+"""
+    SARSOPEvaluator
+
+simulate a sarsop policy from the xml files 
+* `sim_len`  number of steps to use in simulation (default 10)
+* `sim_num` number of simulations
+* `fast` use fast (but very picky) alternate parser for .pomdp files
+* `srand` set the random seed for the simulation
+* `memory` [MB] No memory limit by default. If memory usage exceeds the specified value, the evaluator will switch back 
+to a more conservative (and slow) methods.
+* `output_file` where to write the results
+* `policy_filename` policy file location
+* `pomdp_filename` pomdpx file location
+"""
+@with_kw struct SARSOPEvaluator
+    sim_len::Int = 10
+    sim_num::Int = 10 
+    fast::Bool = false 
+    srand::Union{Int64, Nothing} = nothing
+    memory::Union{Float64, Nothing} = nothing 
+    output_file::AbstractString = ""
+    policy_filename::AbstractString = "policy.out"
+    pomdp_filename::AbstractString = "model.pomdpx"
+end
+
+function get_evaluator_options(ev::SARSOPEvaluator)
+    options = String[]
+    push!(options, "--simLen")
+    push!(options, string(ev.sim_len))
+    push!(options, "--simNum")
+    push!(options, string(ev.sim_num))
+    if ev.fast 
+        push!(options, "--fast")
+    end
+    if ev.srand != nothing 
+        push!(options, "--srand")
+        push!(options, string(ev.srand))
+    end
+    if ev.memory != nothing 
+        push!(options, "--memory")
+        push!(options, string(ev.memory))
+    end
+    push!(options, "--output-file")
+    push!(options, ev.output_file)
+    return options 
+end
+
+function evaluate(ev::SARSOPEvaluator)
+    options_list = get_evaluator_options(ev)
+    run(`$EXEC_POMDP_EVAL $(ev.pomdp_filename) --policy-file $(ev.policy_filename) $options_list`)
 end

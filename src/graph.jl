@@ -1,41 +1,52 @@
-mutable struct PolicyGraphGenerator
+"""
+    PolicyGraphGenerator
 
-    options::Dict{AbstractString,Any}
-
-    function PolicyGraphGenerator(
-        filename::AbstractString; # output name for the DOT file to be generated
-        fast::Bool=false, # use fast (but very picky) alternate parser for .pomdp files
-        graph_max_depth::Union{Int,Nothing}=nothing, # maximum horizon of the generated policy graph.
-                                                     # There is no limit by default.
-        graph_max_branch::Union{Int,Nothing}=nothing, # maximum number of branches
-                                                      # of the generated policy graph.
-                                                      # Shown will be top in probability.
-                                                      # There is no limit by default.
-        graph_min_prob::Union{Float64,Nothing}=nothing, # minimum probability threshold for a branch
-                                                    # to be shown in the policy graph
-                                                    # defaults to zero
-        )
-
-        options = Dict{AbstractString,Any}()
-        options["policy-graph"] = filename
-        if fast
-            options["fast"] = ""
-        end
-        if isa(graph_max_depth, Int)
-            options["graph-max-depth"] = graph_max_depth
-        end
-        if isa(graph_max_branch, Int)
-            options["graph-max-branch"] = graph_max_branch
-        end
-        if isa(graph_min_prob, Float64)
-            options["graph-min-prob"] = graph_min_prob
-        end
-
-        new(options)
-    end
+* `fast = false` use fast (but very picky) alternate parser for .pomdp files
+* `graph_max_depth` maximum horizon of the generated policy graph. There is no limit by default.
+* `graph_max_branch` maximum number of branches of the generated policy graph. Shown will be top in probability. There is no limit by default.
+* `graph_min_prob` minimum probability threshold for a branch to be shown in the policy graph defaults to zero
+* `graph_filename` output name for the DOT file to be generated
+* `pomdp_filename` pomdp file input 
+* `policy_filename` policy file input
+"""
+@with_kw struct PolicyGraphGenerator 
+    fast::Bool = false 
+    graph_max_depth::Union{Int,Nothing}=nothing 
+    graph_max_branch::Union{Int,Nothing}=nothing 
+    graph_min_prob::Union{Float64,Nothing}=nothing 
+    graph_filename::AbstractString = "policy_graph.dot" 
+    pomdp_filename::AbstractString = "model.pomdpx"
+    policy_filename::AbstractString = "policy.out"
 end
 
-function polgraph(graphgen::PolicyGraphGenerator, pomdp::SARSOPFile, policy_filename::String)
-    options_list = _get_options_list(graphgen.options)
-    run(`$EXEC_POLICY_GRAPH_GENERATOR $(pomdp.filename) --policy-file $(policy_filename) $options_list`)
+function get_graph_generator_options(graphgen::PolicyGraphGenerator)
+    options = AbstractString[]
+    push!(options, "--policy-graph")
+    push!(options, string(graphgen.graph_filename))
+    if graphgen.fast 
+        push!(options, "--fast")
+    end
+    if graphgen.graph_max_depth != nothing
+        push!(options, "--graph-max-depth")
+        push!(options, string(graphgen.graph_max_depth))
+    end
+    if graphgen.graph_max_branch != nothing 
+        push!(options, "graph-max-branch")
+        push!(options, string(graphgen.graph_max_branch))
+    end
+    if graphgen.graph_min_prob != nothing 
+        push!(options, "graph-min-prob")
+        push!(options, string(graphgen.graph_min_prob))
+    end
+    return options 
+end
+
+"""
+    generate_graph(graphgen::PolicyGraphGenerator)
+    
+Generate a policy graph, see PolicyGraphGenerator to see the available options.
+"""
+function generate_graph(graphgen::PolicyGraphGenerator)
+    options_list = get_graph_generator_options(graphgen)
+    run(`$EXEC_POLICY_GRAPH_GENERATOR $(graphgen.pomdp_filename) --policy-file $(graphgen.policy_filename) $options_list`)
 end

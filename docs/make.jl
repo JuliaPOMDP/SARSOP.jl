@@ -1,12 +1,14 @@
 using Documenter, SARSOP
 
 makedocs(
-    # options
-    modules = [SARSOP]    
+    modules = [SARSOP],
+    format = :html,
+    sitename = "SARSOP.jl"
 )
 
 deploydocs(
     repo = "github.com/JuliaPOMDP/SARSOP.jl.git",
-    julia = "release",
-    osname = "linux"
+    target = "build",
+    deps = nothing,
+    make = nothing
 )
