@@ -8,7 +8,7 @@ Base solver type for SARSOP. Contains an options dictionary with the following e
 * 'precision': run ends when target precision is reached
 * 'timeout':  [sec] If running time exceeds the specified value, pomdpsol writes out a policy and terminates
 * 'memory': [MB] If memory usage exceeds the specified value, pomdpsol writes out a policy and terminates
-* 'trial-improvement-factor': temrinates when the gap between bounds reaches this value
+* 'trial-improvement-factor': terminates when the gap between bounds reaches this value
 * 'policy-interval':  the time interval between two consecutive write-out of policy files
 """
 @with_kw mutable struct SARSOPSolver <: Solver
