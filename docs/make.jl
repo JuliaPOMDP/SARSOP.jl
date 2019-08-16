@@ -8,6 +8,8 @@ makedocs(
 
 deploydocs(
     repo = "github.com/JuliaPOMDP/SARSOP.jl.git",
+    julia = "1.1",
+    osname = "linux",
     target = "build",
     deps = nothing,
     make = nothing
