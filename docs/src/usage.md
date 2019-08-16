@@ -19,34 +19,35 @@ SARSOP.jl makes it easy to interface with the APPL SARSOP solver. Once you have 
 you can generate policies by running the following:
 
 ```julia
+using POMDPs
 using SARSOP
 using POMDPModels # this contains the TigerPOMDP model
 
 pomdp = TigerPOMDP() # this comes from POMDPModels, you will want this to be your concrete POMDP type
 
-# If the policy file already exists, it will be loaded by default
-policy = load_policy("tiger.policy")
-
 solver = SARSOPSolver()
-solve(solver, pomdp) # no need to use solve if "mypolicy.policy" already exists
+policy = solve(solver, pomdp)
+
+# the policy will be saved to a file and can be loaded in an other julia session as follows:
+policy = load_policy(pomdp, "policy.out")
 ```
 
 We can simulate, evaluate and create policy graphs:
 
 ```julia
+using POMDPModelTools
 # Policy can be used to map belief to actions
-ns = n_states(pomdp) # implemented by user
-b = initial_belief(pomdp) # implemented by user
+b = uniform_belief(pomdp) # from POMDPModelTools
 a = action(policy, b) 
 
 # simulate the SARSOP policy
-simulator = SARSOPSimulator(num_sim = 5, sim_len = 5, 
+simulator = SARSOPSimulator(sim_num = 5, sim_len = 5, 
                             policy_filename = "policy.out",
                             pomdp_filename = "model.pomdpx")
 simulate(simulator) 
 
 # evaluate the SARSOP policy
-evaluator = SARSOPEvaluator(num_sim = 5, sim_len = 5, 
+evaluator = SARSOPEvaluator(sim_num = 5, sim_len = 5, 
                             policy_filename = "policy.out",
                             pomdp_filename = "model.pomdpx")
 evaluate(evaluator)
@@ -55,5 +56,5 @@ evaluate(evaluator)
 graphgen = PolicyGraphGenerator(graph_filename = "Tiger.dot",
                                 policy_filename = "policy.out",
                                 pomdp_filename = "model.pomdpx")
-polgraph(graphgen)
+generate_graph(graphgen)
 ```

@@ -22,7 +22,14 @@ Pages = ["api.md"]
 
 ```@docs
 SARSOPSolver
-solve
+```
+
+## File manipulation
+
+```@docs
+POMDPFile
+to_pomdpx
+load_policy
 ```
 
 ## Simulation and Evaluation
