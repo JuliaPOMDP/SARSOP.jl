@@ -18,5 +18,5 @@ script:
   - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
   - julia --project --color=yes --check-bounds=yes -e 'import Pkg; Pkg.build(); Pkg.test("SARSOP"; coverage=true)'  
 after_success:
-  - julia --project --color=yes -e 'import Pkg; Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'  
-  - julia --project --color=yes -e 'import Pkg; Pkg.add("Documenter"); include(joinpath("docs", "make.jl"))'
+  - julia --project -e 'import Pkg; ps=Pkg.PackageSpec(name="Documenter", version="0.19"); Pkg.add(ps); Pkg.pin(ps); include("docs/make.jl")'
+  - julia --project -e 'import Pkg; Pkg.add("Coverage"); using Coverage; Coveralls.submit(Coveralls.process_folder())'
