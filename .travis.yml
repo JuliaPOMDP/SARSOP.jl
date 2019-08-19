@@ -30,5 +30,6 @@ jobs:
         - git clone https://github.com/JuliaPOMDP/Registry  $(julia -e 'import Pkg; println(joinpath(Pkg.depots1(), "registries", "JuliaPOMDP"))') 
         - julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.build("SARSOP");
                                                Pkg.instantiate()'
+        - juliat --project=docs/ -e 'using Pkg; Pkg.add("Documenter")'
         - julia --project=docs/ docs/make.jl
       after_success: skip
