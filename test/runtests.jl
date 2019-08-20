@@ -13,7 +13,9 @@ using Test
 end
 
 @testset "Basic interface" begin
-    solver = SARSOPSolver()
+    solver = SARSOPSolver(precision=0.01, timeout=10.0, memory=100.0, fast=true, 
+                          randomization=true, 
+                          trial_improvement_factor=1e-3)
     pomdp = TigerPOMDP()
     policy = solve(solver, pomdp)
     mdp = SimpleGridWorld()
@@ -24,14 +26,16 @@ end
 end
 
 @testset "Simulator" begin 
-    simulator = SARSOPSimulator(sim_len=5, sim_num=5)
+    simulator = SARSOPSimulator(sim_len=5, sim_num=5, fast=true, srand = 1)
     simulate(simulator)
-    evaluator = SARSOPEvaluator(sim_len=5, sim_num=5)
+    evaluator = SARSOPEvaluator(sim_len=5, sim_num=5, fast=true, srand = 1, memory=200.0)
     evaluate(evaluator)
 end
 
 @testset "Policy Graph" begin 
-    graph_generator = PolicyGraphGenerator(graph_filename="tiger.dot", pomdp_filename="model.pomdpx")
+    graph_generator = PolicyGraphGenerator(graph_filename="tiger.dot",
+                                           pomdp_filename="model.pomdpx",
+                                           fast = true)
     generate_graph(graph_generator)
     @test isfile(graph_generator.graph_filename)
 end
@@ -41,4 +45,5 @@ end
     policy = solve(SARSOPSolver(verbose=false), pomdp)
     policy2 = load_policy(pomdp, "policy.out")
     @test policy.alphas == policy2.alphas
+    @test_throws ErrorException load_policy(pomdp, "dum.out")
 end

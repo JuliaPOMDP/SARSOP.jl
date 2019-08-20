@@ -38,6 +38,11 @@ function get_simulator_options(sim::SARSOPSimulator)
     return options 
 end
 
+"""
+    POMDPs.simulate(sim::SARSOPSimulator)
+
+Simulate a SARSOP policy according to the config specified by `sim::SARSOPSimulator`
+"""
 function POMDPs.simulate(sim::SARSOPSimulator)
     options_list = get_simulator_options(sim)
     run(`$EXEC_POMDP_SIM $(sim.pomdp_filename) --policy-file $(sim.policy_filename) $options_list`)
@@ -90,6 +95,11 @@ function get_evaluator_options(ev::SARSOPEvaluator)
     return options 
 end
 
+"""
+    evaluate(ev::SARSOPEvaluator)
+
+simulate a SARSOP policy according to the configuration specified by `ev::SARSOPEvaluator`
+"""
 function evaluate(ev::SARSOPEvaluator)
     options_list = get_evaluator_options(ev)
     run(`$EXEC_POMDP_EVAL $(ev.pomdp_filename) --policy-file $(ev.policy_filename) $options_list`)
