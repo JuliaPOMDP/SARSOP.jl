@@ -39,7 +39,7 @@ function get_solver_options(solver::SARSOPSolver)
         push!(options_list, string(solver.timeout))
     end
     if solver.memory != nothing
-        push!(options_list, "--timeout")
+        push!(options_list, "--memory")
         push!(options_list, string(solver.memory))
     end
     push!(options_list, "--trial-improvement-factor")

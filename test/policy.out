@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Policy version="0.1" type="value" model="model.pomdpx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="policyx.xsd">
+<AlphaVector vectorLength="2" numObsValue="1" numVectors="5">
+<Vector action="2" obsValue="0">-81.5975 28.4025 </Vector>
+<Vector action="0" obsValue="0">3.01448 24.6954 </Vector>
+<Vector action="0" obsValue="0">24.6954 3.01452 </Vector>
+<Vector action="1" obsValue="0">28.4025 -81.5975 </Vector>
+<Vector action="0" obsValue="0">19.3711 19.3711 </Vector>
+</AlphaVector> </Policy>
