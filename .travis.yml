@@ -4,9 +4,8 @@ os:
   - osx
   - windows
 julia:
-  - 0.7
   - 1.0
-  - 1.1
+  - 1
 notifications:
   email: false
 before_script:
