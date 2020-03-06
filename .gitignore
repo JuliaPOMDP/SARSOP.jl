@@ -1,7 +1,6 @@
 *.dot
 *.policy
 *.pomdp
-*.pomdpx
 docs/build/
 docs/site
 
