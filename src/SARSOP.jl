@@ -1,5 +1,6 @@
 module SARSOP
 
+using SARSOP_jll
 using POMDPs
 using POMDPXFiles
 using POMDPModelTools
@@ -18,7 +19,6 @@ export
     PolicyGraphGenerator,
     generate_graph
 
-include("constants.jl")
 include("file.jl")
 include("solver.jl")
 include("simulator.jl")
