@@ -6,7 +6,7 @@ using POMDPSimulators
 using Test
 
 @testset "POMDPFile" begin
-    pomdp_file = POMDPFile(joinpath(@__DIR__, "Tiger.pomdpx"))
+    pomdp_file = POMDPFile(joinpath(@__DIR__, "tiger.pomdpx"))
     @test isfile(pomdp_file.filename)
     tiger_file = POMDPFile(TigerPOMDP())
     @test isfile(tiger_file.filename)
