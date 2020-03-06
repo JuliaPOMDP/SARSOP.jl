@@ -45,7 +45,9 @@ Simulate a SARSOP policy according to the config specified by `sim::SARSOPSimula
 """
 function POMDPs.simulate(sim::SARSOPSimulator)
     options_list = get_simulator_options(sim)
-    run(`$EXEC_POMDP_SIM $(sim.pomdp_filename) --policy-file $(sim.policy_filename) $options_list`)
+    pomdpsim() do pomdpsim_path
+        run(`$pomdpsim_path $(sim.pomdp_filename) --policy-file $(sim.policy_filename) $options_list`)
+    end
 end
 
 """
@@ -102,5 +104,7 @@ simulate a SARSOP policy according to the configuration specified by `ev::SARSOP
 """
 function evaluate(ev::SARSOPEvaluator)
     options_list = get_evaluator_options(ev)
-    run(`$EXEC_POMDP_EVAL $(ev.pomdp_filename) --policy-file $(ev.policy_filename) $options_list`)
+    pomdpeval() do pomdpeval_path
+        run(`$pomdpeval_path $(ev.pomdp_filename) --policy-file $(ev.policy_filename) $options_list`)
+    end
 end

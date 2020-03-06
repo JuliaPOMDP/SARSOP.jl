@@ -48,5 +48,7 @@ Generate a policy graph, see PolicyGraphGenerator to see the available options.
 """
 function generate_graph(graphgen::PolicyGraphGenerator)
     options_list = get_graph_generator_options(graphgen)
-    run(`$EXEC_POLICY_GRAPH_GENERATOR $(graphgen.pomdp_filename) --policy-file $(graphgen.policy_filename) $options_list`)
+    polgraph() do polgraph_path 
+        run(`$polgraph_path $(graphgen.pomdp_filename) --policy-file $(graphgen.policy_filename) $options_list`)
+    end
 end
