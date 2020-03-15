@@ -47,3 +47,7 @@ end
     @test policy.alphas == policy2.alphas
     @test_throws ErrorException load_policy(pomdp, "dum.out")
 end
+
+@testset "Issue #39" begin
+    solve(SARSOPSolver(), BabyPOMDP())
+end
