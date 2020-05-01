@@ -10,6 +10,7 @@ Base solver type for SARSOP. Contains an options dictionary with the following e
 * 'memory': [MB] If memory usage exceeds the specified value, pomdpsol writes out a policy and terminates
 * 'trial-improvement-factor': terminates when the gap between bounds reaches this value
 * 'policy-interval':  the time interval between two consecutive write-out of policy files
+* `verbose`: [true/false] whether to print output from the solver. Default: true
 """
 @with_kw mutable struct SARSOPSolver <: Solver
     fast::Bool = false 
