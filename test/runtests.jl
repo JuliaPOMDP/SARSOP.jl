@@ -1,5 +1,6 @@
 using SARSOP
 using POMDPs
+using POMDPLinter
 using POMDPModels
 using BeliefUpdaters
 using POMDPSimulators
@@ -20,7 +21,7 @@ end
     policy = solve(solver, pomdp)
     mdp = SimpleGridWorld()
     @test_throws ErrorException solve(solver, mdp)
-    @requirements_info solver pomdp
+    POMDPLinter.@show_requirements solve(solver, pomdp)
     sim = RolloutSimulator(max_steps=100)
     r = simulate(sim, pomdp, policy, DiscreteUpdater(pomdp))
 end
