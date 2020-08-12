@@ -4,6 +4,7 @@ repo = "https://github.com/JuliaPOMDP/SARSOP.jl"
 version = "0.5.3"
 
 [deps]
+POMDPLinter = "f3bd98c0-eb40-45e2-9eb1-f2763262d755"
 POMDPModelTools = "08074719-1b2a-587c-a292-00f91cc44415"
 POMDPPolicies = "182e52fb-cfd0-5e46-8c26-fd0667c990f4"
 POMDPXFiles = "c6f6ee83-58c6-5336-a19f-2c76817e1af6"

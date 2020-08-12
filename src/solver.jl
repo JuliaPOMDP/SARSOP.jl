@@ -110,7 +110,7 @@ end
 
 mdp_error() = error("SARSOP is designed to solve POMDPs and is not set up to solve MDPs; consider using DiscreteValueIteration.jl to solve MDPs.")
 
-@POMDP_require solve(solver::SARSOPSolver, pomdp::POMDP) begin
+POMDPLinter.@POMDP_require solve(solver::SARSOPSolver, pomdp::POMDP) begin
     P = typeof(pomdp)
     S = statetype(P)
     A = actiontype(P)

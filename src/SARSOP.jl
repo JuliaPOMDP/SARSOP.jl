@@ -4,6 +4,7 @@ using SARSOP_jll
 using POMDPs
 using POMDPXFiles
 using POMDPModelTools
+using POMDPLinter
 using POMDPPolicies
 using Parameters
 
