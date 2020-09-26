@@ -4,6 +4,7 @@ using POMDPLinter
 using POMDPModels
 using BeliefUpdaters
 using POMDPSimulators
+using QuickPOMDPs
 using Test
 
 @testset "POMDPFile" begin
@@ -51,4 +52,8 @@ end
 
 @testset "Issue #39" begin
     solve(SARSOPSolver(), BabyPOMDP())
+end
+
+@testset "Issue #40" begin
+    include("cancer.jl")
 end
