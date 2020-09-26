@@ -130,4 +130,5 @@ function evalSolver(m)
 end
 
 results_c = evalSolver(c);
+@show results_c["SARSOP"]
 @test results_c["SARSOP"] >= 62.5

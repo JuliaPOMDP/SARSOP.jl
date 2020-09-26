@@ -4,8 +4,11 @@ using POMDPLinter
 using POMDPModels
 using BeliefUpdaters
 using POMDPSimulators
+using POMDPModelTools
 using QuickPOMDPs
 using Test
+
+using SARSOP: evaluate # to avoid ambiguity
 
 @testset "POMDPFile" begin
     pomdp_file = POMDPFile(joinpath(@__DIR__, "tiger.pomdpx"))
