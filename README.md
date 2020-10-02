@@ -2,6 +2,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/JuliaPOMDP/SARSOP.jl/badge.svg?branch=master)](https://coveralls.io/github/JuliaPOMDP/SARSOP.jl?branch=master)
 [![Dev-Docs](https://img.shields.io/badge/docs-latest-blue.svg)](https://JuliaPOMDP.github.io/SARSOP.jl/dev)
 
+
 # SARSOP
 
 
@@ -21,7 +22,7 @@ Pkg.add("SARSOP")
 ```
 
 ## Documentation
-Detailed documentation can be found [here](http://juliapomdp.github.io/SARSOP.jl/latest/).
+Detailed documentation can be found [here](http://juliapomdp.github.io/SARSOP.jl/dev).
 
 
 ## License
