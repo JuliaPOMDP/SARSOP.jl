@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/JuliaPOMDP/SARSOP.jl.svg?branch=master)](https://travis-ci.org/JuliaPOMDP/SARSOP.jl)
 [![Coverage Status](https://coveralls.io/repos/github/JuliaPOMDP/SARSOP.jl/badge.svg?branch=master)](https://coveralls.io/github/JuliaPOMDP/SARSOP.jl?branch=master)
 [![Dev-Docs](https://img.shields.io/badge/docs-latest-blue.svg)](https://JuliaPOMDP.github.io/SARSOP.jl/dev)
+[![Stable-Docs](https://img.shields.io/badge/docs-stable-blue.svg)](https://JuliaPOMDP.github.io/SARSOP.jl/stable)
 
 
 # SARSOP
@@ -22,7 +23,7 @@ Pkg.add("SARSOP")
 ```
 
 ## Documentation
-Detailed documentation can be found [here](http://juliapomdp.github.io/SARSOP.jl/dev).
+Detailed documentation can be found [here](http://juliapomdp.github.io/SARSOP.jl/stable).
 
 
 ## License
