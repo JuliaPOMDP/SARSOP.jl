@@ -2,9 +2,7 @@ using SARSOP
 using POMDPs
 using POMDPLinter
 using POMDPModels
-using BeliefUpdaters
-using POMDPSimulators
-using POMDPModelTools
+using POMDPTools
 using QuickPOMDPs
 using Test
 
