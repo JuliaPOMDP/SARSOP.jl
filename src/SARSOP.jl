@@ -3,9 +3,8 @@ module SARSOP
 using SARSOP_jll
 using POMDPs
 using POMDPXFiles
-using POMDPModelTools
+using POMDPTools
 using POMDPLinter
-using POMDPPolicies
 using Parameters
 
 export 

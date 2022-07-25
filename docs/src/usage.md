@@ -35,7 +35,7 @@ policy = load_policy(pomdp, "policy.out")
 We can simulate, evaluate and create policy graphs:
 
 ```julia
-using POMDPModelTools
+using POMDPTools
 # Policy can be used to map belief to actions
 b = uniform_belief(pomdp) # from POMDPModelTools
 a = action(policy, b) 

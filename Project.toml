@@ -1,12 +1,11 @@
 name = "SARSOP"
 uuid = "cef570c6-3a94-5604-96b7-1a5e143043f2"
 repo = "https://github.com/JuliaPOMDP/SARSOP.jl"
-version = "0.5.5"
+version = "0.5.6"
 
 [deps]
 POMDPLinter = "f3bd98c0-eb40-45e2-9eb1-f2763262d755"
-POMDPModelTools = "08074719-1b2a-587c-a292-00f91cc44415"
-POMDPPolicies = "182e52fb-cfd0-5e46-8c26-fd0667c990f4"
+POMDPTools = "7588e00f-9cae-40de-98dc-e0c70c48cdd7"
 POMDPXFiles = "c6f6ee83-58c6-5336-a19f-2c76817e1af6"
 POMDPs = "a93abf59-7444-517b-a68a-c42f96afdd7d"
 Parameters = "d96e819e-fc66-5662-9728-84c9c7592b0a"
@@ -14,21 +13,18 @@ SARSOP_jll = "e478675d-f996-546e-baa1-da59d9de2062"
 
 [compat]
 POMDPLinter = "0.1"
-POMDPModelTools = "0.3"
-POMDPPolicies = "0.2.2, 0.3, 0.4"
 POMDPXFiles = "0.2.2"
 POMDPs = "0.7.3, 0.8, 0.9"
 Parameters = "0.12"
-QuickPOMDPs = "0.2"
 SARSOP_jll = "0.96"
 julia = "1.3"
+POMDPTools = "0.1"
+QuickPOMDPs = "0.2"
 
 [extras]
-BeliefUpdaters = "8bb6e9a1-7d73-552c-a44a-e5dc5634aac4"
 POMDPModels = "355abbd5-f08e-5560-ac9e-8b5f2592a0ca"
-POMDPSimulators = "e0d0a172-29c6-5d4e-96d0-f262df5d01fd"
 QuickPOMDPs = "8af83fb2-a731-493c-9049-9e19dbce6165"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [targets]
-test = ["POMDPModels", "Test", "BeliefUpdaters", "POMDPSimulators", "QuickPOMDPs"]
+test = ["POMDPModels", "Test", "QuickPOMDPs"]
