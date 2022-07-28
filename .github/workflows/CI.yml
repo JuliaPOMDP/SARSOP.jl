@@ -18,15 +18,14 @@ jobs:
       fail-fast: false
       matrix:
         version:
-          - '1.0'
-          - '1.7'
-          - 'nightly'
+          - "1"
         os:
           - ubuntu-latest
           - macOS-latest
           - windows-latest
         arch:
           - x64
+          - aarch64
     steps:
       - uses: actions/checkout@v2
       - uses: julia-actions/setup-julia@v1
