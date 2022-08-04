@@ -1,0 +1,11 @@
+[deps]
+POMDPLinter = "f3bd98c0-eb40-45e2-9eb1-f2763262d755"
+POMDPModels = "355abbd5-f08e-5560-ac9e-8b5f2592a0ca"
+POMDPTools = "7588e00f-9cae-40de-98dc-e0c70c48cdd7"
+POMDPXFiles = "c6f6ee83-58c6-5336-a19f-2c76817e1af6"
+POMDPs = "a93abf59-7444-517b-a68a-c42f96afdd7d"
+Parameters = "d96e819e-fc66-5662-9728-84c9c7592b0a"
+QuickPOMDPs = "8af83fb2-a731-493c-9049-9e19dbce6165"
+SARSOP = "cef570c6-3a94-5604-96b7-1a5e143043f2"
+SARSOP_jll = "e478675d-f996-546e-baa1-da59d9de2062"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
