@@ -8,4 +8,5 @@ makedocs(
 
 deploydocs(
     repo = "github.com/JuliaPOMDP/SARSOP.jl.git",
+    versions = ["stable" => "v^", "v#.#"],
 )
