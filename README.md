@@ -9,6 +9,8 @@ This Julia package wraps the [SARSOP](http://bigbird.comp.nus.edu.sg/pmwiki/farm
 It works with the [POMDPS.jl](https://github.com/JuliaPOMDP/POMDPs.jl) interface.
 A module for writing POMDPX files is provided through the [POMDPXFile.jl](https://github.com/JuliaPOMDP/POMDPXFile.jl) package, and is a dependency for SARSOP.jl. 
 
+For a pure Julia implementation that avoids the pomdpx file bottleneck, see [NativeSARSOP](https://github.com/JuliaPOMDP/NativeSARSOP.jl).
+
 ## Installation
 
 It is recommended that you have [POMDPs.jl](https://github.com/JuliaPOMDP/POMDPs.jl) installed. To install SARSOP and its Julia wrapper run the following command:
