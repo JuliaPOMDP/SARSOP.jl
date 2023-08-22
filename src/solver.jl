@@ -64,12 +64,10 @@ function POMDPs.solve(solver::SARSOPSolver, pomdp::POMDP; kwargs...)
     end
     pomdp_file = POMDPFile(pomdp, solver.pomdp_filename, verbose=solver.verbose)
     options = get_solver_options(solver)
-    pomdpsol() do pomdpsol_path
-        if solver.verbose 
-            run(`$pomdpsol_path $(pomdp_file.filename) --output $(solver.policy_filename) $options`)
-        else
-            success(`$pomdpsol_path $(pomdp_file.filename) --output $(solver.policy_filename) $options`)
-        end
+    if solver.verbose
+        run(`$(pomdpsol()) $(pomdp_file.filename) --output $(solver.policy_filename) $options`)
+    else
+        success(`$(pomdpsol()) $(pomdp_file.filename) --output $(solver.policy_filename) $options`)
     end
     alphas = POMDPAlphas(solver.policy_filename)
     action_map = broadcast(x -> getindex(ordered_actions(pomdp), x), alphas.alpha_actions .+ 1)
@@ -103,9 +101,7 @@ Convert a .pomdp file to a .pomdpx file.
 """
 function to_pomdpx(pomdp::POMDPFile)
     @assert(splitext(pomdp.filename)[2] == ".pomdp")
-    pomdpconvert() do pomdpconvert_path
-        run(`$pomdpconvert_path $(pomdp.filename)`)
-    end
+    run(`$(pomdpconvert()) $(pomdp.filename)`)
 end
 
 mdp_error() = error("SARSOP is designed to solve POMDPs and is not set up to solve MDPs; consider using DiscreteValueIteration.jl to solve MDPs.")
