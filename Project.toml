@@ -1,7 +1,7 @@
 name = "SARSOP"
 uuid = "cef570c6-3a94-5604-96b7-1a5e143043f2"
 repo = "https://github.com/JuliaPOMDP/SARSOP.jl"
-version = "0.5.7"
+version = "0.5.8"
 
 [deps]
 POMDPLinter = "f3bd98c0-eb40-45e2-9eb1-f2763262d755"
@@ -14,7 +14,7 @@ SARSOP_jll = "e478675d-f996-546e-baa1-da59d9de2062"
 [compat]
 POMDPLinter = "0.1"
 POMDPTools = "0.1, 1"
-POMDPXFiles = "0.2.2"
+POMDPXFiles = "0.2.3, 0.3"
 POMDPs = "0.7.3, 0.8, 0.9, 1"
 Parameters = "0.12"
 QuickPOMDPs = "0.2"

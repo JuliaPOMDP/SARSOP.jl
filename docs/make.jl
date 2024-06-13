@@ -1,9 +1,10 @@
 using Documenter, SARSOP
 
 makedocs(
-    modules = [SARSOP],
-    format = Documenter.HTML(),
-    sitename = "SARSOP.jl"
+    modules=[SARSOP],
+    checkdocs=:exports,
+    format=Documenter.HTML(),
+    sitename="SARSOP.jl"
 )
 
 deploydocs(
