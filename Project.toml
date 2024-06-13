@@ -1,7 +1,7 @@
 name = "SARSOP"
 uuid = "cef570c6-3a94-5604-96b7-1a5e143043f2"
 repo = "https://github.com/JuliaPOMDP/SARSOP.jl"
-version = "0.5.7"
+version = "0.5.8"
 
 [deps]
 POMDPLinter = "f3bd98c0-eb40-45e2-9eb1-f2763262d755"
