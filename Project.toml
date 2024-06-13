@@ -14,7 +14,7 @@ SARSOP_jll = "e478675d-f996-546e-baa1-da59d9de2062"
 [compat]
 POMDPLinter = "0.1"
 POMDPTools = "0.1, 1"
-POMDPXFiles = "0.2.2"
+POMDPXFiles = "0.2.3, 0.3"
 POMDPs = "0.7.3, 0.8, 0.9, 1"
 Parameters = "0.12"
 QuickPOMDPs = "0.2"
