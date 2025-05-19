@@ -4,9 +4,12 @@ using POMDPLinter
 using POMDPModels
 using POMDPTools
 using QuickPOMDPs
+using RockSample
 using Test
 
 using SARSOP: evaluate # to avoid ambiguity
+
+include("rocksample_momdp.jl")
 
 @testset "POMDPFile" begin
     pomdp_file = POMDPFile(joinpath(@__DIR__, "tiger.pomdpx"))
@@ -17,15 +20,28 @@ end
 
 @testset "Basic interface" begin
     solver = SARSOPSolver(precision=0.01, timeout=10.0, memory=100.0, fast=true, 
-                          randomization=true, 
-                          trial_improvement_factor=1e-3)
+        randomization=true, trial_improvement_factor=1e-3)
+    
     pomdp = TigerPOMDP()
     policy = solve(solver, pomdp)
+    
     mdp = SimpleGridWorld()
     @test_throws ErrorException solve(solver, mdp)
+    
     POMDPLinter.@show_requirements solve(solver, pomdp)
     sim = RolloutSimulator(max_steps=100)
     r = simulate(sim, pomdp, policy, DiscreteUpdater(pomdp))
+    
+    rocksample_pomdp = RockSamplePOMDP()
+    rocksample_pomdp = RockSample.RockSamplePOMDP(
+        map_size=(1, 3),
+        rocks_positions=[(1, 1)],
+        init_pos=(1, 2),
+        sensor_efficiency=0.5
+    )
+    rocksample_momdp = RockSampleMOMDP(rocksample_pomdp)
+    pomdp_policy = solve(solver, rocksample_pomdp)
+    momdp_policy = solve(solver, rocksample_momdp)
 end
 
 @testset "Simulator" begin 

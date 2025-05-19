@@ -3,4 +3,6 @@
 *.pomdp
 docs/build/
 docs/site
-
+manifest.toml
+*.out
+*.pomdpx
