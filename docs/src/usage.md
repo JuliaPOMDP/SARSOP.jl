@@ -2,14 +2,9 @@
 
 ## Installation
 
-The package can be installed by either cloning the code and running build or by using the `add` function from
-[POMDPs.jl](https://github.com/JuliaPOMDP/POMDPs.jl)
-
-Installation with POMDPs.jl:
+Install using the Julia package manager:
 ```julia
-using POMDPs
 using Pkg
-POMDPs.add_registry()
 Pkg.add("SARSOP")
 ```
 

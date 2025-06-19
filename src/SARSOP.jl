@@ -5,6 +5,7 @@ using POMDPs
 using POMDPXFiles
 using POMDPTools
 using POMDPLinter
+using MOMDPs
 using Parameters
 
 export 
