@@ -3,8 +3,13 @@ using POMDPs
 using POMDPLinter
 using POMDPModels
 using POMDPTools
+using MOMDPs
 using QuickPOMDPs
+
 using RockSample
+using LinearAlgebra
+using StaticArrays: SVector, MVector
+
 using Test
 
 using SARSOP: evaluate # to avoid ambiguity
